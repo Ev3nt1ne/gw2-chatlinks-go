@@ -100,10 +100,43 @@ func printBuildTemplate(w io.Writer, code string, resolve bool) error {
 			fmt.Fprintf(w, "  %s: palette=%d\n", name, paletteID)
 		}
 	}
-	if len(bt.RangerPetIDs) > 0 {
-		fmt.Fprintln(w, "ranger_pet_ids:", bt.RangerPetIDs)
+	if bt.RangerPets != nil {
+		fmt.Fprintf(w, "ranger_pets: %+v\n", *bt.RangerPets)
+	}
+	if rl := bt.RevenantLegends; rl != nil {
+		fmt.Fprintf(w, "revenant_legends: active_terrestrial=%s inactive_terrestrial=%s active_aquatic=%s inactive_aquatic=%s\n",
+			legendName(rl.TerrestrialActive), legendName(rl.TerrestrialInactive),
+			legendName(rl.AquaticActive), legendName(rl.AquaticInactive))
+	}
+	for _, weaponID := range bt.WeaponIDs {
+		name, ok := chatlinks.WeaponTypes[weaponID]
+		if !ok {
+			name = fmt.Sprintf("unknown(%d)", weaponID)
+		}
+		fmt.Fprintf(w, "weapon: %s\n", name)
+	}
+	for _, skillID := range bt.SkillOverrideIDs {
+		if resolve {
+			name, err := client.ResolveSkillName(ctx, skillID)
+			if err != nil {
+				return err
+			}
+			fmt.Fprintf(w, "skill_override: %s (skill_id=%d)\n", name, skillID)
+		} else {
+			fmt.Fprintf(w, "skill_override: skill_id=%d\n", skillID)
+		}
 	}
 	return nil
+}
+
+func legendName(code int) string {
+	if code == 0 {
+		return "(none)"
+	}
+	if name, ok := chatlinks.Legends[code]; ok {
+		return name
+	}
+	return fmt.Sprintf("unknown(%d)", code)
 }
 
 func printSimpleIDLink(w io.Writer, code, linkType string, resolve bool) error {

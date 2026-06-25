@@ -10,12 +10,22 @@ import (
 // ruleset doc. All four have zero specializations chosen (correct — GW2
 // doesn't unlock trait lines until ~level 11, and these are level-2
 // templates), so the Adept/Master/Grandmaster trait-tier bit-packing logic
-// is NOT exercised by any of them and remains unverified against real data.
+// is exercised here only by the wiki's own worked numeric example (see
+// TestSpecializationTraitByte_WikiWorkedExample), not by a real sample with
+// a trait actually chosen.
+//
+// Their weapon arrays, however, ARE real and were cross-checked against
+// independently-verified game facts, not just the wiki's abstract spec:
+// Thief Dagger+Rifle (Rifle via the Deadeye elite spec), Elementalist Staff,
+// Engineer Rifle+Hammer (Hammer via the Scrapper elite spec — confirmed via
+// the wiki's own Scrapper article, since "Engineer + Hammer" isn't an
+// obviously-correct fact to assume from memory), and Ranger Longbow+
+// Greatsword (both core Ranger weapons).
 const (
-	thiefSample         = "[&DQUAAAAAAAAkDyQPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACLwBVAAA=]"
-	elementalistSample  = "[&DQYAAAAAAAAnDycPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABWQAA]"
-	engineerSample      = "[&DQMAAAAAAAAqDyoPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACVQAzAAA=]"
-	rangerPetSample     = "[&DQQAAAAAAAB5AAAAAAAAAAAAAAAAAAAAAAAAADA7FD8AAAAAAAAAAAAAAAACIwAyAAA=]"
+	thiefSample        = "[&DQUAAAAAAAAkDyQPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACLwBVAAA=]"
+	elementalistSample = "[&DQYAAAAAAAAnDycPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABWQAA]"
+	engineerSample     = "[&DQMAAAAAAAAqDyoPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACVQAzAAA=]"
+	rangerPetSample    = "[&DQQAAAAAAAB5AAAAAAAAAAAAAAAAAAAAAAAAADA7FD8AAAAAAAAAAAAAAAACIwAyAAA=]"
 )
 
 func TestDecodeBuildTemplate_Thief(t *testing.T) {
@@ -34,6 +44,13 @@ func TestDecodeBuildTemplate_Thief(t *testing.T) {
 			t.Errorf("specialization[%d] = %+v, want all-zero trait tiers", i, s)
 		}
 	}
+	wantWeapons := []int{47, 85} // Dagger, Rifle
+	if !equalIntSlices(bt.WeaponIDs, wantWeapons) {
+		t.Errorf("WeaponIDs = %v, want %v", bt.WeaponIDs, wantWeapons)
+	}
+	if len(bt.SkillOverrideIDs) != 0 {
+		t.Errorf("SkillOverrideIDs = %v, want empty", bt.SkillOverrideIDs)
+	}
 }
 
 func TestDecodeBuildTemplate_Elementalist(t *testing.T) {
@@ -46,6 +63,10 @@ func TestDecodeBuildTemplate_Elementalist(t *testing.T) {
 	}
 	if bt.SkillPaletteIDs[0] != 3879 || bt.SkillPaletteIDs[1] != 3879 {
 		t.Errorf("heal palette ids = %v, want [3879 3879 ...]", bt.SkillPaletteIDs)
+	}
+	wantWeapons := []int{89} // Staff
+	if !equalIntSlices(bt.WeaponIDs, wantWeapons) {
+		t.Errorf("WeaponIDs = %v, want %v", bt.WeaponIDs, wantWeapons)
 	}
 }
 
@@ -60,6 +81,12 @@ func TestDecodeBuildTemplate_Engineer(t *testing.T) {
 	if bt.SkillPaletteIDs[0] != 3882 || bt.SkillPaletteIDs[1] != 3882 {
 		t.Errorf("heal palette ids = %v, want [3882 3882 ...]", bt.SkillPaletteIDs)
 	}
+	// Rifle (core) + Hammer (Scrapper elite spec) — cross-checked against
+	// the wiki's Scrapper article, not assumed from memory.
+	wantWeapons := []int{85, 51}
+	if !equalIntSlices(bt.WeaponIDs, wantWeapons) {
+		t.Errorf("WeaponIDs = %v, want %v", bt.WeaponIDs, wantWeapons)
+	}
 }
 
 func TestDecodeBuildTemplate_RangerPets(t *testing.T) {
@@ -70,14 +97,14 @@ func TestDecodeBuildTemplate_RangerPets(t *testing.T) {
 	if bt.Profession != "Ranger" {
 		t.Errorf("Profession = %q, want Ranger", bt.Profession)
 	}
-	want := []int{48, 59, 20, 63}
-	if len(bt.RangerPetIDs) != len(want) {
-		t.Fatalf("RangerPetIDs = %v, want %v", bt.RangerPetIDs, want)
+	want := RangerPets{TerrestrialPet1: 48, TerrestrialPet2: 59, AquaticPet1: 20, AquaticPet2: 63}
+	if bt.RangerPets == nil || *bt.RangerPets != want {
+		t.Fatalf("RangerPets = %+v, want %+v", bt.RangerPets, want)
 	}
-	for i := range want {
-		if bt.RangerPetIDs[i] != want[i] {
-			t.Errorf("RangerPetIDs[%d] = %d, want %d", i, bt.RangerPetIDs[i], want[i])
-		}
+	// Longbow + Greatsword — both core Ranger weapons.
+	wantWeapons := []int{35, 50}
+	if !equalIntSlices(bt.WeaponIDs, wantWeapons) {
+		t.Errorf("WeaponIDs = %v, want %v", bt.WeaponIDs, wantWeapons)
 	}
 }
 
@@ -96,6 +123,218 @@ func TestDecodeBuildTemplate_TooShort(t *testing.T) {
 	tooShort := WrapLink("DQUAAAA=")
 	if _, err := DecodeBuildTemplate(tooShort); err == nil {
 		t.Error("expected error decoding a truncated build template, got nil")
+	}
+}
+
+func TestDecodeBuildTemplate_NoTrailingArrays(t *testing.T) {
+	// A pre-SOTO-format build template: exactly minBuildTemplateLen bytes,
+	// no weapon/skill-override array at all. Must decode without error and
+	// leave both arrays nil, not just empty.
+	raw := make([]byte, minBuildTemplateLen)
+	raw[0] = 0x0D
+	raw[1] = 1 // Guardian
+	code := encodeRaw(raw)
+
+	bt, err := DecodeBuildTemplate(code)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if bt.WeaponIDs != nil {
+		t.Errorf("WeaponIDs = %v, want nil for a code with no trailing arrays", bt.WeaponIDs)
+	}
+	if bt.SkillOverrideIDs != nil {
+		t.Errorf("SkillOverrideIDs = %v, want nil for a code with no trailing arrays", bt.SkillOverrideIDs)
+	}
+}
+
+func TestDecodeBuildTemplate_WeaponArrayTruncated(t *testing.T) {
+	raw := make([]byte, minBuildTemplateLen+1)
+	raw[0] = 0x0D
+	raw[1] = 1
+	raw[minBuildTemplateLen] = 3 // claims 3 weapons, but no weapon bytes follow
+	code := encodeRaw(raw)
+
+	if _, err := DecodeBuildTemplate(code); err == nil {
+		t.Error("expected error for a build template declaring more weapons than it has bytes for, got nil")
+	}
+}
+
+func TestDecodeBuildTemplate_SkillOverrideArrayTruncated(t *testing.T) {
+	raw := make([]byte, minBuildTemplateLen+2)
+	raw[0] = 0x0D
+	raw[1] = 1
+	raw[minBuildTemplateLen] = 0   // zero weapons
+	raw[minBuildTemplateLen+1] = 2 // claims 2 skill overrides, but no bytes follow
+	code := encodeRaw(raw)
+
+	if _, err := DecodeBuildTemplate(code); err == nil {
+		t.Error("expected error for a build template declaring more skill overrides than it has bytes for, got nil")
+	}
+}
+
+// TestSpecializationTraitByte_WikiWorkedExample exercises the wiki's own
+// worked numeric example for the trait-tier byte: specialization ID 3
+// (0b00000011), trait byte 0b00111001, decoding to Adept=1, Master=2,
+// Grandmaster=3. This resolves the ambiguity in the wiki's prose ("2-bit
+// values from 0 to 3, in reverse order") with a concrete worked value, in
+// lieu of a real sample with a non-zero trait actually chosen.
+func TestSpecializationTraitByte_WikiWorkedExample(t *testing.T) {
+	raw := make([]byte, minBuildTemplateLen)
+	raw[0] = 0x0D
+	raw[1] = 1 // Guardian
+	raw[2] = 0b00000011
+	raw[3] = 0b00111001
+	code := encodeRaw(raw)
+
+	bt, err := DecodeBuildTemplate(code)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	got := bt.Specializations[0]
+	want := SpecializationChoice{SpecializationID: 3, Adept: 1, Master: 2, Grandmaster: 3}
+	if got != want {
+		t.Errorf("Specializations[0] = %+v, want %+v", got, want)
+	}
+}
+
+func TestDecodeBuildTemplate_RevenantLegends(t *testing.T) {
+	raw := make([]byte, minBuildTemplateLen)
+	raw[0] = 0x0D
+	raw[1] = 9 // Revenant
+	const profBytesOffset = 2 + 6 + 20
+	raw[profBytesOffset+0] = 1 // active terrestrial: Legendary Dragon Stance
+	raw[profBytesOffset+1] = 2 // inactive terrestrial: Legendary Assassin Stance
+	raw[profBytesOffset+2] = 3 // active aquatic: Legendary Dwarf Stance
+	raw[profBytesOffset+3] = 4 // inactive aquatic: Legendary Demon Stance
+	putU16le(raw, profBytesOffset+4, 100)
+	putU16le(raw, profBytesOffset+6, 101)
+	putU16le(raw, profBytesOffset+8, 102)
+	putU16le(raw, profBytesOffset+10, 200)
+	putU16le(raw, profBytesOffset+12, 201)
+	putU16le(raw, profBytesOffset+14, 202)
+	code := encodeRaw(raw)
+
+	bt, err := DecodeBuildTemplate(code)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	want := RevenantLegends{
+		TerrestrialActive:                    1,
+		TerrestrialInactive:                  2,
+		AquaticActive:                        3,
+		AquaticInactive:                      4,
+		InactiveTerrestrialUtilityPaletteIDs: [3]int{100, 101, 102},
+		InactiveAquaticUtilityPaletteIDs:     [3]int{200, 201, 202},
+	}
+	if bt.RevenantLegends == nil || *bt.RevenantLegends != want {
+		t.Fatalf("RevenantLegends = %+v, want %+v", bt.RevenantLegends, want)
+	}
+}
+
+func TestDecodeBuildTemplate_SkillOverrides(t *testing.T) {
+	raw := make([]byte, minBuildTemplateLen+2)
+	raw[0] = 0x0D
+	raw[1] = 2                   // Warrior
+	raw[minBuildTemplateLen] = 0 // zero weapons
+	overrideCountOffset := minBuildTemplateLen + 1
+	raw = append(raw, 0, 0, 0, 0, 0, 0, 0, 0) // room for 2 four-byte skill ids
+	raw[overrideCountOffset] = 2
+	putU32le(raw, overrideCountOffset+1, 12345)
+	putU32le(raw, overrideCountOffset+5, 67890)
+	code := encodeRaw(raw)
+
+	bt, err := DecodeBuildTemplate(code)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	want := []int{12345, 67890}
+	if !equalIntSlices(bt.SkillOverrideIDs, want) {
+		t.Errorf("SkillOverrideIDs = %v, want %v", bt.SkillOverrideIDs, want)
+	}
+}
+
+// TestEncodeBuildTemplate_RoundTripsRealSamples decodes each real sample
+// and re-encodes it, asserting the resulting raw bytes are byte-for-byte
+// identical to the original. This is a strong joint check on both
+// DecodeBuildTemplate and EncodeBuildTemplate: any mismatch in offsets,
+// bit-packing, or array handling between the two would surface here.
+func TestEncodeBuildTemplate_RoundTripsRealSamples(t *testing.T) {
+	for _, sample := range []string{thiefSample, elementalistSample, engineerSample, rangerPetSample} {
+		wantRaw, err := DecodeRaw(sample)
+		if err != nil {
+			t.Fatalf("DecodeRaw(%q): %v", sample, err)
+		}
+		bt, err := DecodeBuildTemplate(sample)
+		if err != nil {
+			t.Fatalf("DecodeBuildTemplate(%q): %v", sample, err)
+		}
+		reencoded, err := EncodeBuildTemplate(bt)
+		if err != nil {
+			t.Fatalf("EncodeBuildTemplate: %v", err)
+		}
+		gotRaw, err := DecodeRaw(reencoded)
+		if err != nil {
+			t.Fatalf("DecodeRaw(reencoded): %v", err)
+		}
+		if string(gotRaw) != string(wantRaw) {
+			t.Errorf("round-trip mismatch for %q:\n got  %x\n want %x", sample, gotRaw, wantRaw)
+		}
+	}
+}
+
+func TestEncodeBuildTemplate_RevenantLegendsRoundTrip(t *testing.T) {
+	bt := BuildTemplate{
+		ProfessionID: 9,
+		Profession:   "Revenant",
+		RevenantLegends: &RevenantLegends{
+			TerrestrialActive:                    5,
+			TerrestrialInactive:                  6,
+			AquaticActive:                        7,
+			AquaticInactive:                      8,
+			InactiveTerrestrialUtilityPaletteIDs: [3]int{10, 20, 30},
+			InactiveAquaticUtilityPaletteIDs:     [3]int{40, 50, 60},
+		},
+	}
+	code, err := EncodeBuildTemplate(bt)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	got, err := DecodeBuildTemplate(code)
+	if err != nil {
+		t.Fatalf("unexpected error decoding re-encoded link: %v", err)
+	}
+	if got.RevenantLegends == nil || *got.RevenantLegends != *bt.RevenantLegends {
+		t.Errorf("RevenantLegends = %+v, want %+v", got.RevenantLegends, bt.RevenantLegends)
+	}
+}
+
+func TestEncodeBuildTemplate_WeaponsAndSkillOverrides(t *testing.T) {
+	bt := BuildTemplate{
+		ProfessionID:     2, // Warrior
+		Profession:       "Warrior",
+		WeaponIDs:        []int{90, 51}, // Sword, Hammer
+		SkillOverrideIDs: []int{111, 222, 333},
+	}
+	code, err := EncodeBuildTemplate(bt)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	got, err := DecodeBuildTemplate(code)
+	if err != nil {
+		t.Fatalf("unexpected error decoding re-encoded link: %v", err)
+	}
+	if !equalIntSlices(got.WeaponIDs, bt.WeaponIDs) {
+		t.Errorf("WeaponIDs = %v, want %v", got.WeaponIDs, bt.WeaponIDs)
+	}
+	if !equalIntSlices(got.SkillOverrideIDs, bt.SkillOverrideIDs) {
+		t.Errorf("SkillOverrideIDs = %v, want %v", got.SkillOverrideIDs, bt.SkillOverrideIDs)
+	}
+}
+
+func TestEncodeBuildTemplate_TooManyWeapons(t *testing.T) {
+	bt := BuildTemplate{ProfessionID: 1, WeaponIDs: make([]int, maxWeapons+1)}
+	if _, err := EncodeBuildTemplate(bt); err == nil {
+		t.Error("expected error for more than maxWeapons weapons, got nil")
 	}
 }
 
@@ -154,6 +393,9 @@ func TestDecodeSimpleIDLink(t *testing.T) {
 	if link.LinkType != "item" {
 		t.Errorf("LinkType = %q, want item", link.LinkType)
 	}
+	if link.Quantity != 1 {
+		t.Errorf("Quantity = %d, want 1", link.Quantity)
+	}
 }
 
 func TestDecodeSimpleIDLink_TooShort(t *testing.T) {
@@ -162,9 +404,63 @@ func TestDecodeSimpleIDLink_TooShort(t *testing.T) {
 	}
 }
 
+func TestEncodeSimpleIDLink_RoundTrip(t *testing.T) {
+	tests := []SimpleIDLink{
+		{LinkType: "skill", ID: 3876},
+		{LinkType: "trait", ID: 1234},
+		{LinkType: "item", ID: 5678, Quantity: 3},
+		{LinkType: "recipe", ID: 42},
+	}
+	for _, want := range tests {
+		code, err := EncodeSimpleIDLink(want)
+		if err != nil {
+			t.Fatalf("EncodeSimpleIDLink(%+v): %v", want, err)
+		}
+		got, err := DecodeSimpleIDLink(code)
+		if err != nil {
+			t.Fatalf("DecodeSimpleIDLink(%q): %v", code, err)
+		}
+		if got != want {
+			t.Errorf("round-trip mismatch: got %+v, want %+v", got, want)
+		}
+	}
+}
+
+func TestEncodeSimpleIDLink_ItemDefaultQuantity(t *testing.T) {
+	code, err := EncodeSimpleIDLink(SimpleIDLink{LinkType: "item", ID: 1})
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	link, err := DecodeSimpleIDLink(code)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if link.Quantity != 1 {
+		t.Errorf("Quantity = %d, want 1 (default)", link.Quantity)
+	}
+}
+
+func TestEncodeSimpleIDLink_UnknownLinkType(t *testing.T) {
+	if _, err := EncodeSimpleIDLink(SimpleIDLink{LinkType: "not-a-real-type", ID: 1}); err == nil {
+		t.Error("expected error for unknown link type, got nil")
+	}
+}
+
 func TestStripAndWrapLink_RoundTrip(t *testing.T) {
 	bare := StripLink(thiefSample)
 	if WrapLink(bare) != thiefSample {
 		t.Errorf("WrapLink(StripLink(code)) = %q, want %q", WrapLink(bare), thiefSample)
 	}
+}
+
+func equalIntSlices(a, b []int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
 }

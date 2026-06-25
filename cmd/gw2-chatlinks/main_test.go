@@ -4,9 +4,12 @@ import (
 	"bytes"
 	"strings"
 	"testing"
+
+	"github.com/Ev3nt1ne/gw2-chatlinks-go/chatlinks"
 )
 
 const thiefSample = "[&DQUAAAAAAAAkDyQPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACLwBVAAA=]"
+const rangerPetSample = "[&DQQAAAAAAAB5AAAAAAAAAAAAAAAAAAAAAAAAADA7FD8AAAAAAAAAAAAAAAACIwAyAAA=]"
 
 func TestRun_BuildTemplate_NoResolve(t *testing.T) {
 	var buf bytes.Buffer
@@ -65,5 +68,80 @@ func TestRun_ResolveUnsupportedForRecipe(t *testing.T) {
 	err := run(&buf, "[&CQEAAAA=]", true)
 	if err == nil {
 		t.Error("expected error for --resolve on a recipe link, got nil")
+	}
+}
+
+func TestRun_RangerPetsAndWeapons_NoResolve(t *testing.T) {
+	var buf bytes.Buffer
+	if err := run(&buf, rangerPetSample, false); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	out := buf.String()
+	if !strings.Contains(out, "ranger_pets:") {
+		t.Errorf("output missing ranger_pets line: %s", out)
+	}
+	if !strings.Contains(out, "weapon: Longbow") || !strings.Contains(out, "weapon: Greatsword") {
+		t.Errorf("output missing weapon lines: %s", out)
+	}
+}
+
+func TestRun_RevenantLegends_NoResolve(t *testing.T) {
+	code, err := chatlinks.EncodeBuildTemplate(chatlinks.BuildTemplate{
+		ProfessionID: 9, // Revenant
+		RevenantLegends: &chatlinks.RevenantLegends{
+			TerrestrialActive:   1,
+			TerrestrialInactive: 2,
+		},
+	})
+	if err != nil {
+		t.Fatalf("unexpected error building test fixture: %v", err)
+	}
+
+	var buf bytes.Buffer
+	if err := run(&buf, code, false); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	out := buf.String()
+	if !strings.Contains(out, "active_terrestrial=Legendary Dragon Stance") {
+		t.Errorf("output missing resolved legend name: %s", out)
+	}
+	if !strings.Contains(out, "inactive_aquatic=(none)") {
+		t.Errorf("output missing (none) for an unset legend slot: %s", out)
+	}
+}
+
+func TestRun_RevenantLegends_UnknownCode(t *testing.T) {
+	code, err := chatlinks.EncodeBuildTemplate(chatlinks.BuildTemplate{
+		ProfessionID:    9,
+		RevenantLegends: &chatlinks.RevenantLegends{TerrestrialActive: 99},
+	})
+	if err != nil {
+		t.Fatalf("unexpected error building test fixture: %v", err)
+	}
+
+	var buf bytes.Buffer
+	if err := run(&buf, code, false); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if !strings.Contains(buf.String(), "active_terrestrial=unknown(99)") {
+		t.Errorf("output missing unknown-legend fallback: %s", buf.String())
+	}
+}
+
+func TestRun_SkillOverride_NoResolve(t *testing.T) {
+	code, err := chatlinks.EncodeBuildTemplate(chatlinks.BuildTemplate{
+		ProfessionID:     2, // Warrior
+		SkillOverrideIDs: []int{12345},
+	})
+	if err != nil {
+		t.Fatalf("unexpected error building test fixture: %v", err)
+	}
+
+	var buf bytes.Buffer
+	if err := run(&buf, code, false); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if !strings.Contains(buf.String(), "skill_override: skill_id=12345") {
+		t.Errorf("output missing skill_override line: %s", buf.String())
 	}
 }

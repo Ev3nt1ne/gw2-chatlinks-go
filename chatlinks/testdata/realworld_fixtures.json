@@ -1,1412 +1,2858 @@
 [
   {
     "type": "item",
-    "code": "[&AgHcTAAA]",
-    "id": 19676,
-    "name": "Icy Runestone"
+    "category": "Armor",
+    "code": "[&AgGeBgAA]",
+    "id": 1694,
+    "name": "Ravaging Worn Scale Helm"
   },
   {
     "type": "item",
-    "code": "[&AgEPDQAA]",
-    "id": 3343,
-    "name": "Mighty Apprentice Gloves"
+    "category": "Armor",
+    "code": "[&AgHDEQAA]",
+    "id": 4547,
+    "name": "Wren Mantle"
   },
   {
     "type": "item",
-    "code": "[&AgEXvwAA]",
-    "id": 48919,
-    "name": "Recipe: Toxic Maintenance Oil"
+    "category": "Armor",
+    "code": "[&AgFYLgAA]",
+    "id": 11864,
+    "name": "Valkyrie Prowler Boots"
   },
   {
     "type": "item",
-    "code": "[&AgHdrAAA]",
-    "id": 44253,
-    "name": "Embroidered Saddlebag"
+    "category": "Armor",
+    "code": "[&AgGLDQAA]",
+    "id": 3467,
+    "name": "Strong Rawhide Bracers"
   },
   {
     "type": "item",
-    "code": "[&AgGwlgAA]",
-    "id": 38576,
-    "name": "Soldier's Krytan Staff"
+    "category": "Armor",
+    "code": "[&AgFLCwAA]",
+    "id": 2891,
+    "name": "Strong Chainmail Helm"
   },
   {
     "type": "item",
-    "code": "[&AgEYZAAA]",
-    "id": 25624,
-    "name": "Mending Shiverpeak Beacon of the Hydromancer"
+    "category": "Armor",
+    "code": "[&AgE2+AAA]",
+    "id": 63542,
+    "name": "Ravaging Student Mantle"
   },
   {
     "type": "item",
-    "code": "[&AgHWQgAA]",
-    "id": 17110,
-    "name": "Rabid Cabalist Legs"
+    "category": "Armor",
+    "code": "[&AgETBgAA]",
+    "id": 1555,
+    "name": "Rampager's Reinforced Scale Gauntlets of Divinity"
   },
   {
     "type": "item",
-    "code": "[&AgEpogEA]",
-    "id": 107049,
-    "name": "Golden Horse Statue"
+    "category": "Armor",
+    "code": "[&AgFzsgAA]",
+    "id": 45683,
+    "name": "Assassin's Winged Mantle"
   },
   {
     "type": "item",
-    "code": "[&AgGhNQAA]",
-    "id": 13729,
-    "name": "Mighty Green Wood Scepter"
+    "category": "Back",
+    "code": "[&AgEsSwEA]",
+    "id": 84780,
+    "name": "Soldier's Backpack Strap of Azurite"
   },
   {
     "type": "item",
-    "code": "[&AgFCTAEA]",
-    "id": 85058,
-    "name": "Mottled Canyon Griffon Egg"
+    "category": "Back",
+    "code": "[&AgG29QAA]",
+    "id": 62902,
+    "name": "Simple Huntsman's Backpack"
   },
   {
     "type": "item",
-    "code": "[&AgHnEAAA]",
-    "id": 4327,
-    "name": "Medium Diver's Mask"
+    "category": "Back",
+    "code": "[&AgFkMQEA]",
+    "id": 78180,
+    "name": "Soldier's Backpack Strap of Beryl"
   },
   {
     "type": "item",
-    "code": "[&AgHjDwAA]",
-    "id": 4067,
-    "name": "Steam-Touched Sturdy Coat"
+    "category": "Back",
+    "code": "[&AgEoKgEA]",
+    "id": 76328,
+    "name": "Elegant Scribe's Backpack"
   },
   {
     "type": "item",
-    "code": "[&AgFIOQAA]",
-    "id": 14664,
-    "name": "Valkyrie Pearl Speargun"
+    "category": "Back",
+    "code": "[&AgHAQgEA]",
+    "id": 82624,
+    "name": "Rabid's Backpack Strap of the Rabid"
   },
   {
     "type": "item",
-    "code": "[&AgG1kwAA]",
-    "id": 37813,
-    "name": "Cavalier's Rogue Boots"
+    "category": "Back",
+    "code": "[&AgHDkAAA]",
+    "id": 37059,
+    "name": "Prototype Fractal Capacitor"
   },
   {
     "type": "item",
-    "code": "[&AgFSogAA]",
-    "id": 41554,
-    "name": "Sentinel's Embroidered Silk Insignia"
+    "category": "Back",
+    "code": "[&AgHRnQEA]",
+    "id": 105937,
+    "name": "Deactivated Chrysalis Backpiece"
   },
   {
     "type": "item",
-    "code": "[&AgEehQEA]",
-    "id": 99614,
-    "name": "Collapsing Star Scepter Skin"
+    "category": "Back",
+    "code": "[&AgFJjAEA]",
+    "id": 101449,
+    "name": "Banner of the Bastion of the Obscure"
   },
   {
     "type": "item",
-    "code": "[&AgHXDQAA]",
-    "id": 3543,
-    "name": "Berserker's Dreadnought Warboots"
+    "category": "Bag",
+    "code": "[&AgFxJQAA]",
+    "id": 9585,
+    "name": "20 Slot Oiled Pack"
   },
   {
     "type": "item",
-    "code": "[&AgERqwEA]",
-    "id": 109329,
-    "name": "Track 54: Caithe's Daggers"
+    "category": "Bag",
+    "code": "[&AgF1TQEA]",
+    "id": 85365,
+    "name": "32-Slot Cowrie League Saddlebag"
   },
   {
     "type": "item",
-    "code": "[&AgHKhgAA]",
-    "id": 34506,
-    "name": "Carrion Glyphic Brand"
+    "category": "Bag",
+    "code": "[&AgFeJQAA]",
+    "id": 9566,
+    "name": "18 Slot Silk Bag"
   },
   {
     "type": "item",
-    "code": "[&AgHooQEA]",
-    "id": 106984,
-    "name": "\"/PoseHeart\" Emote Tome"
+    "category": "Bag",
+    "code": "[&AgGalQAA]",
+    "id": 38298,
+    "name": "15-Slot Gift Box"
   },
   {
     "type": "item",
-    "code": "[&AgGbSgEA]",
-    "id": 84635,
-    "name": "Recipe: Spearmarshal's Shoulderpads"
+    "category": "Bag",
+    "code": "[&AgFLvgAA]",
+    "id": 48715,
+    "name": "Halloween Pail"
   },
   {
     "type": "item",
-    "code": "[&AgEJlQAA]",
-    "id": 38153,
-    "name": "Snowflake Platinum Earring"
+    "category": "Bag",
+    "code": "[&AgE2UwAA]",
+    "id": 21302,
+    "name": "Soldier's Satchel"
   },
   {
     "type": "item",
-    "code": "[&AgFcXgEA]",
-    "id": 89692,
-    "name": "Light of Deldrimor Plate\u2014Bottom Half"
+    "category": "Bag",
+    "code": "[&AgF8TQEA]",
+    "id": 85372,
+    "name": "32-Slot Marshal's Pannier"
   },
   {
     "type": "item",
-    "code": "[&AgFxwgAA]",
-    "id": 49777,
-    "name": "Recipe: Zealot's Pearl Sabre"
+    "category": "Bag",
+    "code": "[&AgF4TQEA]",
+    "id": 85368,
+    "name": "32-Slot Gossamer Saddlebag"
   },
   {
     "type": "item",
-    "code": "[&AgGKAwAA]",
-    "id": 906,
-    "name": "Berserker's Cabalist Boots of Infiltration"
+    "category": "Consumable",
+    "code": "[&AgFPUwEA]",
+    "id": 86863,
+    "name": "Oregano Seed Pouch"
   },
   {
     "type": "item",
-    "code": "[&AgHFbgAA]",
-    "id": 28357,
-    "name": "Berserker's Steam Speargun of Force"
+    "category": "Consumable",
+    "code": "[&AgG/CAEA]",
+    "id": 67775,
+    "name": "Bandit Combat Journal"
   },
   {
     "type": "item",
-    "code": "[&AgGlTAEA]",
-    "id": 85157,
-    "name": "Recipe: Zehtuka's Greatbow"
+    "category": "Consumable",
+    "code": "[&AgHMlAEA]",
+    "id": 103628,
+    "name": "Recipe: Gargoyle"
   },
   {
     "type": "item",
-    "code": "[&AgHrCwEA]",
-    "id": 68587,
-    "name": "Mordrem Staff Skin"
+    "category": "Consumable",
+    "code": "[&AgFweQEA]",
+    "id": 96624,
+    "name": "Recipe: Jade Bot Gliding Booster"
   },
   {
     "type": "item",
-    "code": "[&AgFHwgAA]",
-    "id": 49735,
-    "name": "Recipe: Zealot's Intricate Gossamer Insignia"
+    "category": "Consumable",
+    "code": "[&AgFFwQAA]",
+    "id": 49477,
+    "name": "Fires of Balthazar Skin"
   },
   {
     "type": "item",
-    "code": "[&AgGibAAA]",
-    "id": 27810,
-    "name": "Cleric's Soft Wood Short Bow of Nullification"
+    "category": "Consumable",
+    "code": "[&AgGwaQEA]",
+    "id": 92592,
+    "name": "Mythic Warhorn Skin"
   },
   {
     "type": "item",
-    "code": "[&AgE2kQAA]",
-    "id": 37174,
-    "name": "Apothecary's Silk Insignia"
+    "category": "Consumable",
+    "code": "[&AgE5IgAA]",
+    "id": 8761,
+    "name": "Drake Egg"
   },
   {
     "type": "item",
-    "code": "[&AgHICAEA]",
-    "id": 67784,
-    "name": "Endless Dust Mite Tonic"
+    "category": "Consumable",
+    "code": "[&AgHGXQEA]",
+    "id": 89542,
+    "name": "Recipe: Steelstar's Warhammer"
   },
   {
     "type": "item",
-    "code": "[&AgGqQgAA]",
-    "id": 17066,
-    "name": "Berserker's Reinforced Scale Legs"
+    "category": "Container",
+    "code": "[&AgEbVAEA]",
+    "id": 87067,
+    "name": "Sandswept Isles Griffon Expert: Gold"
   },
   {
     "type": "item",
-    "code": "[&AgHFOAAA]",
-    "id": 14533,
-    "name": "Knight's Hard Wood Torch"
+    "category": "Container",
+    "code": "[&AgE3dwEA]",
+    "id": 96055,
+    "name": "Dead Alewife"
   },
   {
     "type": "item",
-    "code": "[&AgGJKwEA]",
-    "id": 76681,
-    "name": "Trailblazer's Chak Pistol"
+    "category": "Container",
+    "code": "[&AgFW8QAA]",
+    "id": 61782,
+    "name": "Processional Flame"
   },
   {
     "type": "item",
-    "code": "[&AgH5OgAA]",
-    "id": 15097,
-    "name": "Hearty Steel Shield"
+    "category": "Container",
+    "code": "[&AgGF8wAA]",
+    "id": 62341,
+    "name": "Gravelgun"
   },
   {
     "type": "item",
-    "code": "[&AgEMHQEA]",
-    "id": 72972,
-    "name": "Orr's Fall"
+    "category": "Container",
+    "code": "[&AgGrqQEA]",
+    "id": 108971,
+    "name": "Morph-o-Matic Weapon Box"
   },
   {
     "type": "item",
-    "code": "[&AgFTEgEA]",
-    "id": 70227,
-    "name": "Wei Qi's Footwear"
+    "category": "Container",
+    "code": "[&AgGg8AAA]",
+    "id": 61600,
+    "name": "Darkdevoted Kris"
   },
   {
     "type": "item",
-    "code": "[&AgENuQAA]",
-    "id": 47373,
-    "name": "Dire Orrian Spear of Earth"
+    "category": "Container",
+    "code": "[&AgFUAAEA]",
+    "id": 65620,
+    "name": "Veteran Eye of Zhaitan Loot Box"
   },
   {
     "type": "item",
-    "code": "[&AgE0GQAA]",
-    "id": 6452,
-    "name": "Mending Chestpiece"
+    "category": "Container",
+    "code": "[&AgFuEgEA]",
+    "id": 70254,
+    "name": "Nuhoch Hunting Stash"
   },
   {
     "type": "item",
-    "code": "[&AgGpZQEA]",
-    "id": 91561,
-    "name": "Superior Sigil of Strength"
+    "category": "CraftingMaterial",
+    "code": "[&AgFhMgAA]",
+    "id": 12897,
+    "name": "Large Green Haft"
   },
   {
     "type": "item",
-    "code": "[&AgExmwEA]",
-    "id": 105265,
-    "name": "Shade-Touched Greatsword Skin"
+    "category": "CraftingMaterial",
+    "code": "[&AgEnMAAA]",
+    "id": 12327,
+    "name": "Clam"
   },
   {
     "type": "item",
-    "code": "[&AgG/WwAA]",
-    "id": 23487,
-    "name": "Ash Legion Crest"
+    "category": "CraftingMaterial",
+    "code": "[&AgEpMwAA]",
+    "id": 13097,
+    "name": "Rawhide Shoulderguard Panel"
   },
   {
     "type": "item",
-    "code": "[&AgGOKgEA]",
-    "id": 76430,
-    "name": "Moonstone Orichalcum Earring"
+    "category": "CraftingMaterial",
+    "code": "[&AgFqFwEA]",
+    "id": 71530,
+    "name": "Guild Magic Find Banner Schematic"
   },
   {
     "type": "item",
-    "code": "[&AgFjMQAA]",
-    "id": 12643,
-    "name": "Tray of Banana Bread"
+    "category": "CraftingMaterial",
+    "code": "[&AgEkMAAA]",
+    "id": 12324,
+    "name": "Bag of Starch"
   },
   {
     "type": "item",
-    "code": "[&AgHgpQEA]",
-    "id": 108000,
-    "name": "Steelstar's Epaulets"
+    "category": "CraftingMaterial",
+    "code": "[&AgE4IgEA]",
+    "id": 74296,
+    "name": "Crate of Training Supplies"
   },
   {
     "type": "item",
-    "code": "[&AgEBzwAA]",
-    "id": 52993,
-    "name": "Deserter's Housebreaker"
+    "category": "CraftingMaterial",
+    "code": "[&AgEXMgAA]",
+    "id": 12823,
+    "name": "Silver Chain"
   },
   {
     "type": "item",
-    "code": "[&AgHSHgEA]",
-    "id": 73426,
-    "name": "Raccoon Pelt"
+    "category": "CraftingMaterial",
+    "code": "[&AgG0MwAA]",
+    "id": 13236,
+    "name": "Hardened Glove Lining"
   },
   {
     "type": "item",
-    "code": "[&AgEogwAA]",
-    "id": 33576,
-    "name": "Penetrating Krytan Sword"
+    "category": "Dye",
+    "code": "[&AgEiuwAA]",
+    "id": 47906,
+    "name": "Acrid Dye"
   },
   {
     "type": "item",
-    "code": "[&AgGHLAAA]",
-    "id": 11399,
-    "name": "Rampager's Masquerade Mantle"
+    "category": "Dye",
+    "code": "[&AgH+UAAA]",
+    "id": 20734,
+    "name": "Strawberry Dye"
   },
   {
     "type": "item",
-    "code": "[&AgHZGgAA]",
-    "id": 6873,
-    "name": "Soldier's Duelist Mask"
+    "category": "Dye",
+    "code": "[&AgHG+gAA]",
+    "id": 64198,
+    "name": "Enameled Legacy Dye"
   },
   {
     "type": "item",
-    "code": "[&AgEUmgAA]",
-    "id": 39444,
-    "name": "Recipe: Box of Apothecary's Gladiator Armor"
+    "category": "Dye",
+    "code": "[&AgGiUAAA]",
+    "id": 20642,
+    "name": "Teal Dye"
   },
   {
     "type": "item",
-    "code": "[&AgEQzQAA]",
-    "id": 52496,
-    "name": "Malign Sparrowcatcher"
+    "category": "Dye",
+    "code": "[&AgGlUAAA]",
+    "id": 20645,
+    "name": "Wine Breeze Dye"
   },
   {
     "type": "item",
-    "code": "[&AgHmMQAA]",
-    "id": 12774,
-    "name": "Basil Leaves in Bulk"
+    "category": "Dye",
+    "code": "[&AgFIUAAA]",
+    "id": 20552,
+    "name": "Midnight Fuchsia Dye"
   },
   {
     "type": "item",
-    "code": "[&AgFjogAA]",
-    "id": 41571,
-    "name": "Bowl of Garlic Butter Sauce"
+    "category": "Dye",
+    "code": "[&AgG/UAAA]",
+    "id": 20671,
+    "name": "Deep Pine Dye"
   },
   {
     "type": "item",
-    "code": "[&AgFFPQAA]",
-    "id": 15685,
-    "name": "Rampager's Ogre Bulwark"
+    "category": "Dye",
+    "code": "[&AgGvUAAA]",
+    "id": 20655,
+    "name": "Purple Breeze Dye"
   },
   {
     "type": "item",
-    "code": "[&AgGtKwEA]",
-    "id": 76717,
-    "name": "Pahua's Bastion"
+    "category": "Gathering",
+    "code": "[&AgF7YQEA]",
+    "id": 90491,
+    "name": "Alchemist's Mining Pick"
   },
   {
     "type": "item",
-    "code": "[&AgFUwgAA]",
-    "id": 49748,
-    "name": "Recipe: Zealot's Exalted Coat"
+    "category": "Gathering",
+    "code": "[&AgH9kwAA]",
+    "id": 37885,
+    "name": "Sturdy Mithril Mining Pick"
   },
   {
     "type": "item",
-    "code": "[&AgGBYQEA]",
-    "id": 90497,
-    "name": "Flying Lesson\u2014Elon Riverlands"
+    "category": "Gathering",
+    "code": "[&AgFz+gAA]",
+    "id": 64115,
+    "name": "Copper Mining Pick"
   },
   {
     "type": "item",
-    "code": "[&AgEKIQEA]",
-    "id": 73994,
-    "name": "Illuminated Fountain"
+    "category": "Gathering",
+    "code": "[&AgEJZAEA]",
+    "id": 91145,
+    "name": "Skyscale Hatchling Mining Tool"
   },
   {
     "type": "item",
-    "code": "[&AgFOcAAA]",
-    "id": 28750,
-    "name": "Berserker's Iron Spear of Ogre Slaying"
+    "category": "Gathering",
+    "code": "[&AgEVCwEA]",
+    "id": 68373,
+    "name": "Frostbitten Orichalcum Logging Axe"
   },
   {
     "type": "item",
-    "code": "[&AgG7JAEA]",
-    "id": 74939,
-    "name": "Everburning Flame"
+    "category": "Gathering",
+    "code": "[&AgFRqQEA]",
+    "id": 108881,
+    "name": "Dynamics Extractor Mining Tool"
   },
   {
     "type": "item",
-    "code": "[&AgF4GgEA]",
-    "id": 72312,
-    "name": "Bag of Aurillium"
+    "category": "Gathering",
+    "code": "[&AgF+VQEA]",
+    "id": 87422,
+    "name": "Watchwork Mining Pick"
   },
   {
     "type": "item",
-    "code": "[&AgFtjAAA]",
-    "id": 35949,
-    "name": "Ascalonian Performer Mask"
+    "category": "Gathering",
+    "code": "[&AgHbWQAA]",
+    "id": 23003,
+    "name": "Steel Mining Pick"
   },
   {
     "type": "item",
-    "code": "[&AgFQugAA]",
-    "id": 47696,
-    "name": "Dire Krytan Spear of Bloodlust"
+    "category": "Gizmo",
+    "code": "[&AgGYaAEA]",
+    "id": 92312,
+    "name": "Fine Black Lion Dye Canister\u2014Blue"
   },
   {
     "type": "item",
-    "code": "[&AgF+LQAA]",
-    "id": 11646,
-    "name": "Resilient Seeker Mask"
+    "category": "Gizmo",
+    "code": "[&AgEGOAEA]",
+    "id": 79878,
+    "name": "Svanir Disguise: Helm"
   },
   {
     "type": "item",
-    "code": "[&AgHddQAA]",
-    "id": 30173,
-    "name": "Amduat Sceptre"
+    "category": "Gizmo",
+    "code": "[&AgFdGgEA]",
+    "id": 72285,
+    "name": "Branded Crystalline Phial"
   },
   {
     "type": "item",
-    "code": "[&AgHpmQEA]",
-    "id": 104937,
-    "name": "Stone-Growth Scepter Skin"
+    "category": "Gizmo",
+    "code": "[&AgGjvgAA]",
+    "id": 48803,
+    "name": "Tassi's Relay Golem"
   },
   {
     "type": "item",
-    "code": "[&AgHSrAAA]",
-    "id": 44242,
-    "name": "Elaborate Ritualist Bag"
+    "category": "Gizmo",
+    "code": "[&AgGfbAEA]",
+    "id": 93343,
+    "name": "Drizzlewood Coast Portal Scroll"
   },
   {
     "type": "item",
-    "code": "[&AgGwcAAA]",
-    "id": 28848,
-    "name": "Berserker's Focus"
+    "category": "Gizmo",
+    "code": "[&AgH4NgEA]",
+    "id": 79608,
+    "name": "Infinite Mist Offensive Potion"
   },
   {
     "type": "item",
-    "code": "[&AgGMZwEA]",
-    "id": 92044,
-    "name": "Grothmar Skyscale Challenge: Gold"
+    "category": "Gizmo",
+    "code": "[&AgFncQEA]",
+    "id": 94567,
+    "name": "Unfinished Azure Dragon Slayer Greatsword"
   },
   {
     "type": "item",
-    "code": "[&AgE1KwEA]",
-    "id": 76597,
-    "name": "Essence of Ebonhawke"
+    "category": "Gizmo",
+    "code": "[&AgFQjQAA]",
+    "id": 36176,
+    "name": "Endless Riding Clothes Tonic"
   },
   {
     "type": "item",
-    "code": "[&AgHtuwAA]",
-    "id": 48109,
-    "name": "Forgemaster's Breastplate"
+    "category": "JadeTechModule",
+    "code": "[&AgFqeQEA]",
+    "id": 96618,
+    "name": "Recycler: Karma"
   },
   {
     "type": "item",
-    "code": "[&AgF6qAEA]",
-    "id": 108666,
-    "name": "Ventari's Metal Breather"
+    "category": "JadeTechModule",
+    "code": "[&AgGgdgEA]",
+    "id": 95904,
+    "name": "Treasure Hunter Protocol 1"
   },
   {
     "type": "item",
-    "code": "[&AgFNlAAA]",
-    "id": 37965,
-    "name": "Lionguard Short Bow"
+    "category": "JadeTechModule",
+    "code": "[&AgEkfQEA]",
+    "id": 97572,
+    "name": "Rescue Protocol Recharge 1"
   },
   {
     "type": "item",
-    "code": "[&AgHj+gAA]",
-    "id": 64227,
-    "name": "Mini Priory Explorer"
+    "category": "MiniPet",
+    "code": "[&AgFbVQEA]",
+    "id": 87387,
+    "name": "Mini Silver Griffon Hatchling"
   },
   {
     "type": "item",
-    "code": "[&AgF8JQAA]",
-    "id": 9596,
-    "name": "Recipe: Asuran Harpoon"
+    "category": "MiniPet",
+    "code": "[&AgFmlQEA]",
+    "id": 103782,
+    "name": "Mini Beige Warclaw Cub"
   },
   {
     "type": "item",
-    "code": "[&AgEgmwAA]",
-    "id": 39712,
-    "name": "Mini Red Siege Golem"
+    "category": "MiniPet",
+    "code": "[&AgE8wgAA]",
+    "id": 49724,
+    "name": "Mini Cobalt Great Jungle Wurm Head"
   },
   {
     "type": "item",
-    "code": "[&AgEREQAA]",
-    "id": 4369,
-    "name": "Cistern Waterbreather"
+    "category": "MiniPet",
+    "code": "[&AgHGTgAA]",
+    "id": 20166,
+    "name": "Mini Orrian Wraith"
   },
   {
     "type": "item",
-    "code": "[&AgEg8gAA]",
-    "id": 61984,
-    "name": "Pride of Arms"
+    "category": "MiniPet",
+    "code": "[&AgGA+QAA]",
+    "id": 63872,
+    "name": "Mini Llama"
   },
   {
     "type": "item",
-    "code": "[&AgEKOwEA]",
-    "id": 80650,
-    "name": "Gift of Divinity"
+    "category": "MiniPet",
+    "code": "[&AgGFaAEA]",
+    "id": 92293,
+    "name": "Mini Icebrood Construct"
   },
   {
     "type": "item",
-    "code": "[&AgG0ugAA]",
-    "id": 47796,
-    "name": "Dire Aureate Targe of Energy"
+    "category": "MiniPet",
+    "code": "[&AgHSTgAA]",
+    "id": 20178,
+    "name": "Mini Skarn Darkhoof"
   },
   {
     "type": "item",
-    "code": "[&AgHLKgAA]",
-    "id": 10955,
-    "name": "Honed Student Leggings"
+    "category": "MiniPet",
+    "code": "[&AgFeRAEA]",
+    "id": 83038,
+    "name": "Mini Blue Choya"
   },
   {
     "type": "item",
-    "code": "[&AgGnjQAA]",
-    "id": 36263,
-    "name": "Penetrating Krytan Axe of the Night"
+    "category": "Relic",
+    "code": "[&AgGooQEA]",
+    "id": 106920,
+    "name": "Relic of the Nautical Beast"
   },
   {
     "type": "item",
-    "code": "[&AgG68QAA]",
-    "id": 61882,
-    "name": "Pride of Arms"
+    "category": "Relic",
+    "code": "[&AgFNjAEA]",
+    "id": 101453,
+    "name": "Relic of the Nightmare"
   },
   {
     "type": "item",
-    "code": "[&AgFFjwAA]",
-    "id": 36677,
-    "name": "Charred Back Warmer"
+    "category": "Relic",
+    "code": "[&AgFCjAEA]",
+    "id": 101442,
+    "name": "Relic of Speed"
   },
   {
     "type": "item",
-    "code": "[&AgHlfwEA]",
-    "id": 98277,
-    "name": "Purified Mordrem Aether"
+    "category": "Relic",
+    "code": "[&AgGljAEA]",
+    "id": 101541,
+    "name": "Relic of the Sunless"
   },
   {
     "type": "item",
-    "code": "[&AgEBNwEA]",
-    "id": 79617,
-    "name": "Carnival Pistol"
+    "category": "Relic",
+    "code": "[&AgF3lwEA]",
+    "id": 104311,
+    "name": "Relic of the Privateer"
   },
   {
     "type": "item",
-    "code": "[&AgFdZQEA]",
-    "id": 91485,
-    "name": "Superior Rune of the Traveler"
+    "category": "Relic",
+    "code": "[&AgFEiQEA]",
+    "id": 100676,
+    "name": "Relic of Vampirism"
   },
   {
     "type": "item",
-    "code": "[&AgEtZgAA]",
-    "id": 26157,
-    "name": "Precise Iron Dagger"
+    "category": "Relic",
+    "code": "[&AgHDkAEA]",
+    "id": 102595,
+    "name": "Relic of the Stormsinger"
+  },
+  {
+    "type": "item",
+    "category": "Relic",
+    "code": "[&AgEAlAEA]",
+    "id": 103424,
+    "name": "Relic of Sorrow"
+  },
+  {
+    "type": "item",
+    "category": "Tool",
+    "code": "[&AgEUJgEA]",
+    "id": 75284,
+    "name": "Ascended Salvage Tool"
+  },
+  {
+    "type": "item",
+    "category": "Tool",
+    "code": "[&AgEDWgAA]",
+    "id": 23043,
+    "name": "Master's Salvage Kit"
+  },
+  {
+    "type": "item",
+    "category": "Tool",
+    "code": "[&AgEGWgAA]",
+    "id": 23046,
+    "name": "PvP Salvage Kit"
+  },
+  {
+    "type": "item",
+    "category": "Trinket",
+    "code": "[&AgGlXAAA]",
+    "id": 23717,
+    "name": "Runestone Necklace"
+  },
+  {
+    "type": "item",
+    "category": "Trinket",
+    "code": "[&AgHHXQAA]",
+    "id": 24007,
+    "name": "Marching Orders"
+  },
+  {
+    "type": "item",
+    "category": "Trinket",
+    "code": "[&AgH8dwEA]",
+    "id": 96252,
+    "name": "Master Mechanist's Badge"
+  },
+  {
+    "type": "item",
+    "category": "Trinket",
+    "code": "[&AgHSXQAA]",
+    "id": 24018,
+    "name": "Invader's Amulet"
+  },
+  {
+    "type": "item",
+    "category": "Trinket",
+    "code": "[&AgGSSQEA]",
+    "id": 84370,
+    "name": "Mirror of Disenchantment"
+  },
+  {
+    "type": "item",
+    "category": "Trinket",
+    "code": "[&AgHRWgAA]",
+    "id": 23249,
+    "name": "Berserker's Ring"
+  },
+  {
+    "type": "item",
+    "category": "Trinket",
+    "code": "[&AgGNXAAA]",
+    "id": 23693,
+    "name": "Orrian Mirror Shard"
+  },
+  {
+    "type": "item",
+    "category": "Trinket",
+    "code": "[&AgFiLgEA]",
+    "id": 77410,
+    "name": "Assaulter's Talisman of Manton"
+  },
+  {
+    "type": "item",
+    "category": "Trophy",
+    "code": "[&AgFxFgEA]",
+    "id": 71281,
+    "name": "Aetherblade Recruitment Form"
+  },
+  {
+    "type": "item",
+    "category": "Trophy",
+    "code": "[&AgGwHQEA]",
+    "id": 73136,
+    "name": "Dreamy Water Sample"
+  },
+  {
+    "type": "item",
+    "category": "Trophy",
+    "code": "[&AgHbLAEA]",
+    "id": 77019,
+    "name": "Fellmyst Falls Water Sample"
+  },
+  {
+    "type": "item",
+    "category": "Trophy",
+    "code": "[&AgF5IgEA]",
+    "id": 74361,
+    "name": "Quartz Vial"
+  },
+  {
+    "type": "item",
+    "category": "Trophy",
+    "code": "[&AgH7KgEA]",
+    "id": 76539,
+    "name": "Frostfang Vol. 2"
+  },
+  {
+    "type": "item",
+    "category": "Trophy",
+    "code": "[&AgEMGQEA]",
+    "id": 71948,
+    "name": "Dream of Jormag"
+  },
+  {
+    "type": "item",
+    "category": "Trophy",
+    "code": "[&AgGiTAAA]",
+    "id": 19618,
+    "name": "Ruined Log"
+  },
+  {
+    "type": "item",
+    "category": "Trophy",
+    "code": "[&AgE1tgAA]",
+    "id": 46645,
+    "name": "Princess Miya's Dress"
+  },
+  {
+    "type": "item",
+    "category": "UpgradeComponent",
+    "code": "[&AgH9YAAA]",
+    "id": 24829,
+    "name": "Major Rune of the Adventurer"
+  },
+  {
+    "type": "item",
+    "category": "UpgradeComponent",
+    "code": "[&AgF+YAAA]",
+    "id": 24702,
+    "name": "Superior Rune of the Pack"
+  },
+  {
+    "type": "item",
+    "category": "UpgradeComponent",
+    "code": "[&AgGvXwAA]",
+    "id": 24495,
+    "name": "Brilliant Sapphire Jewel"
+  },
+  {
+    "type": "item",
+    "category": "UpgradeComponent",
+    "code": "[&AgHyWwEA]",
+    "id": 89074,
+    "name": "Polysaturating Reverberating Infusion (Gray)"
+  },
+  {
+    "type": "item",
+    "category": "UpgradeComponent",
+    "code": "[&AgG+XwAA]",
+    "id": 24510,
+    "name": "Coral Orb"
+  },
+  {
+    "type": "item",
+    "category": "UpgradeComponent",
+    "code": "[&AgHWPwEA]",
+    "id": 81878,
+    "name": "Celestial Infusion (Blue)"
+  },
+  {
+    "type": "item",
+    "category": "UpgradeComponent",
+    "code": "[&AgEohgEA]",
+    "id": 99880,
+    "name": "Mote of Darkness"
+  },
+  {
+    "type": "item",
+    "category": "UpgradeComponent",
+    "code": "[&AgGfUgAA]",
+    "id": 21151,
+    "name": "Sigil of Geomancy"
+  },
+  {
+    "type": "item",
+    "category": "Weapon",
+    "code": "[&AgGrlwAA]",
+    "id": 38827,
+    "name": "Magi's Tribal Sword"
+  },
+  {
+    "type": "item",
+    "category": "Weapon",
+    "code": "[&AgEwdgAA]",
+    "id": 30256,
+    "name": "Conquest Short Bow"
+  },
+  {
+    "type": "item",
+    "category": "Weapon",
+    "code": "[&AgEkpgEA]",
+    "id": 108068,
+    "name": "Pahua's Razor"
+  },
+  {
+    "type": "item",
+    "category": "Weapon",
+    "code": "[&AgEYZgAA]",
+    "id": 26136,
+    "name": "Rampager's Iron Dagger of Life"
+  },
+  {
+    "type": "item",
+    "category": "Weapon",
+    "code": "[&AgGtdQAA]",
+    "id": 30125,
+    "name": "Gear-locked Greatblade"
+  },
+  {
+    "type": "item",
+    "category": "Weapon",
+    "code": "[&AgEZPAAA]",
+    "id": 15385,
+    "name": "Rampager's Mithril Shield"
+  },
+  {
+    "type": "item",
+    "category": "Weapon",
+    "code": "[&AgHGeAAA]",
+    "id": 30918,
+    "name": "Mighty Sword"
+  },
+  {
+    "type": "item",
+    "category": "Weapon",
+    "code": "[&AgGrugAA]",
+    "id": 47787,
+    "name": "Dire Aureate Musket of Corruption"
   },
   {
     "type": "skill",
-    "code": "[&Bk+pAAA=]",
-    "id": 43343,
-    "name": "Blade Renewal"
+    "category": "(none)",
+    "code": "[&BublAAA=]",
+    "id": 58854,
+    "name": "Dagger Strike"
   },
   {
     "type": "skill",
-    "code": "[&Buk4AAA=]",
-    "id": 14569,
-    "name": "Battle Standard"
+    "category": "(none)",
+    "code": "[&Bu+GAAA=]",
+    "id": 34543,
+    "name": "Thunder"
   },
   {
     "type": "skill",
-    "code": "[&BlOdAAA=]",
-    "id": 40275,
-    "name": "Keen Strike"
+    "category": "(none)",
+    "code": "[&BrSvAAA=]",
+    "id": 44980,
+    "name": "Jacaranda's Embrace"
   },
   {
     "type": "skill",
-    "code": "[&BoYtAQA=]",
-    "id": 77190,
-    "name": "Otter's Compassion"
+    "category": "(none)",
+    "code": "[&BgLvAAA=]",
+    "id": 61186,
+    "name": "Fulgor Sphere"
   },
   {
     "type": "skill",
-    "code": "[&Bu8oAQA=]",
-    "id": 76015,
-    "name": "Fluxlance Salvo"
+    "category": "(none)",
+    "code": "[&BhsmAQA=]",
+    "id": 75291,
+    "name": "Fulgent Fence"
   },
   {
     "type": "skill",
-    "code": "[&BsqnAAA=]",
-    "id": 42954,
-    "name": "Fracturing Strike"
+    "category": "(none)",
+    "code": "[&BsIkAQA=]",
+    "id": 74946,
+    "name": "Earthrend"
   },
   {
     "type": "skill",
+    "category": "(none)",
+    "code": "[&BqGVAAA=]",
+    "id": 38305,
+    "name": "Bludgeon"
+  },
+  {
+    "type": "skill",
+    "category": "(none)",
+    "code": "[&Bp28AAA=]",
+    "id": 48285,
+    "name": "Shock Wave"
+  },
+  {
+    "type": "skill",
+    "category": "Elementalist",
+    "code": "[&Bh0WAAA=]",
+    "id": 5661,
+    "name": "Murky Water"
+  },
+  {
+    "type": "skill",
+    "category": "Elementalist",
+    "code": "[&BlQdAQA=]",
+    "id": 73044,
+    "name": "Volcano"
+  },
+  {
+    "type": "skill",
+    "category": "Elementalist",
+    "code": "[&Bu71AAA=]",
+    "id": 62958,
+    "name": "Rain of Blows"
+  },
+  {
+    "type": "skill",
+    "category": "Elementalist",
+    "code": "[&BgssAQA=]",
+    "id": 76811,
+    "name": "Buoyant Deluge"
+  },
+  {
+    "type": "skill",
+    "category": "Elementalist",
+    "code": "[&BlqlAAA=]",
+    "id": 42330,
+    "name": "Steam Surge"
+  },
+  {
+    "type": "skill",
+    "category": "Elementalist",
+    "code": "[&BqAVAAA=]",
+    "id": 5536,
+    "name": "Lightning Flash"
+  },
+  {
+    "type": "skill",
+    "category": "Elementalist",
+    "code": "[&Bk0dAQA=]",
+    "id": 73037,
+    "name": "Energize"
+  },
+  {
+    "type": "skill",
+    "category": "Elementalist",
+    "code": "[&BoYVAAA=]",
+    "id": 5510,
+    "name": "Water Trident"
+  },
+  {
+    "type": "skill",
+    "category": "Engineer",
+    "code": "[&BpV1AAA=]",
+    "id": 30101,
+    "name": "Bulwark Gyro"
+  },
+  {
+    "type": "skill",
+    "category": "Engineer",
+    "code": "[&BtQqAQA=]",
+    "id": 76500,
+    "name": "Flashbang"
+  },
+  {
+    "type": "skill",
+    "category": "Engineer",
+    "code": "[&BlUXAAA=]",
+    "id": 5973,
+    "name": "Superspeed"
+  },
+  {
+    "type": "skill",
+    "category": "Engineer",
+    "code": "[&BsoXAAA=]",
+    "id": 6090,
+    "name": "Toss Elixir S"
+  },
+  {
+    "type": "skill",
+    "category": "Engineer",
+    "code": "[&BiUYAAA=]",
+    "id": 6181,
+    "name": "Throw Napalm"
+  },
+  {
+    "type": "skill",
+    "category": "Engineer",
+    "code": "[&BnMUAQA=]",
+    "id": 70771,
+    "name": "Gleam Saber"
+  },
+  {
+    "type": "skill",
+    "category": "Engineer",
+    "code": "[&Bof2AAA=]",
+    "id": 63111,
+    "name": "Shift Signet"
+  },
+  {
+    "type": "skill",
+    "category": "Engineer",
+    "code": "[&BvoWAAA=]",
+    "id": 5882,
+    "name": "Grenade"
+  },
+  {
+    "type": "skill",
+    "category": "Guardian",
+    "code": "[&Bm4sAQA=]",
+    "id": 76910,
+    "name": "Shining Spin"
+  },
+  {
+    "type": "skill",
+    "category": "Guardian",
+    "code": "[&BugjAAA=]",
+    "id": 9192,
+    "name": "Symbol of Spears"
+  },
+  {
+    "type": "skill",
+    "category": "Guardian",
+    "code": "[&Bg0sAQA=]",
+    "id": 76813,
+    "name": "Effulgent Stance"
+  },
+  {
+    "type": "skill",
+    "category": "Guardian",
+    "code": "[&Bl8dAQA=]",
+    "id": 73055,
+    "name": "Daybreaking Slash"
+  },
+  {
+    "type": "skill",
+    "category": "Guardian",
+    "code": "[&BskjAAA=]",
+    "id": 9161,
+    "name": "Symbol of Protection"
+  },
+  {
+    "type": "skill",
+    "category": "Guardian",
+    "code": "[&Bn8jAAA=]",
+    "id": 9087,
+    "name": "Shield of Judgment"
+  },
+  {
+    "type": "skill",
+    "category": "Guardian",
+    "code": "[&BoN1AAA=]",
+    "id": 30083,
+    "name": "Wings of Resolve"
+  },
+  {
+    "type": "skill",
+    "category": "Guardian",
+    "code": "[&BlUwAAA=]",
+    "id": 12373,
+    "name": "Avatar of Melandru"
+  },
+  {
+    "type": "skill",
+    "category": "Mesmer",
+    "code": "[&Br0nAAA=]",
+    "id": 10173,
+    "name": "Illusionary Leap"
+  },
+  {
+    "type": "skill",
+    "category": "Mesmer",
+    "code": "[&Bht4AAA=]",
+    "id": 30747,
+    "name": "Continuum Shift"
+  },
+  {
+    "type": "skill",
+    "category": "Mesmer",
+    "code": "[&Bjr0AAA=]",
+    "id": 62522,
+    "name": "Twin Blade Restoration"
+  },
+  {
+    "type": "skill",
+    "category": "Mesmer",
+    "code": "[&Bl0oAAA=]",
+    "id": 10333,
+    "name": "Mirror Blade"
+  },
+  {
+    "type": "skill",
+    "category": "Mesmer",
+    "code": "[&BiQoAAA=]",
+    "id": 10276,
+    "name": "Illusionary Counter"
+  },
+  {
+    "type": "skill",
+    "category": "Mesmer",
+    "code": "[&BqssAQA=]",
+    "id": 76971,
+    "name": "Tale of the August Queen"
+  },
+  {
+    "type": "skill",
+    "category": "Mesmer",
+    "code": "[&BnYoAAA=]",
+    "id": 10358,
+    "name": "Counter Blade"
+  },
+  {
+    "type": "skill",
+    "category": "Mesmer",
+    "code": "[&Bm30AAA=]",
+    "id": 62573,
+    "name": "Psychic Force"
+  },
+  {
+    "type": "skill",
+    "category": "Necromancer",
+    "code": "[&BpP0AAA=]",
+    "id": 62611,
+    "name": "Tainted Bolts"
+  },
+  {
+    "type": "skill",
+    "category": "Necromancer",
+    "code": "[&BkZ2AAA=]",
+    "id": 30278,
+    "name": "Life Reap"
+  },
+  {
+    "type": "skill",
+    "category": "Necromancer",
+    "code": "[&Bi/0AAA=]",
+    "id": 62511,
+    "name": "Vile Blast"
+  },
+  {
+    "type": "skill",
+    "category": "Necromancer",
+    "code": "[&BrYtAQA=]",
+    "id": 77238,
+    "name": "Ritualist's Shroud"
+  },
+  {
+    "type": "skill",
+    "category": "Necromancer",
+    "code": "[&Bm8pAAA=]",
+    "id": 10607,
+    "name": "Well of Darkness"
+  },
+  {
+    "type": "skill",
+    "category": "Necromancer",
+    "code": "[&Btj3AAA=]",
+    "id": 63448,
+    "name": "Voracious Dive"
+  },
+  {
+    "type": "skill",
+    "category": "Necromancer",
+    "code": "[&BsssAQA=]",
+    "id": 77003,
+    "name": "Innervate Anguish"
+  },
+  {
+    "type": "skill",
+    "category": "Necromancer",
+    "code": "[&BvF4AAA=]",
+    "id": 30961,
+    "name": "Exit Reaper's Shroud"
+  },
+  {
+    "type": "skill",
+    "category": "Ranger",
+    "code": "[&BukUAQA=]",
+    "id": 70889,
+    "name": "Ley-Line Vortex"
+  },
+  {
+    "type": "skill",
+    "category": "Ranger",
+    "code": "[&BjK1AAA=]",
+    "id": 46386,
+    "name": "Tail Lash"
+  },
+  {
+    "type": "skill",
+    "category": "Ranger",
+    "code": "[&Bhj3AAA=]",
+    "id": 63256,
+    "name": "Mutate Conditions"
+  },
+  {
+    "type": "skill",
+    "category": "Ranger",
+    "code": "[&Br0wAAA=]",
+    "id": 12477,
+    "name": "Crippling Talon"
+  },
+  {
+    "type": "skill",
+    "category": "Ranger",
+    "code": "[&BhoxAAA=]",
+    "id": 12570,
+    "name": "Flame Trap"
+  },
+  {
+    "type": "skill",
+    "category": "Ranger",
+    "code": "[&Blp6AAA=]",
+    "id": 31322,
+    "name": "Glyph of Alignment"
+  },
+  {
+    "type": "skill",
+    "category": "Ranger",
+    "code": "[&BjkxAAA=]",
+    "id": 12601,
+    "name": "Nature's Renewal"
+  },
+  {
+    "type": "skill",
+    "category": "Ranger",
+    "code": "[&BtUrAQA=]",
+    "id": 76757,
+    "name": "Mistral"
+  },
+  {
+    "type": "skill",
+    "category": "Revenant",
+    "code": "[&BvocAQA=]",
+    "id": 72954,
+    "name": "Abyssal Blot"
+  },
+  {
+    "type": "skill",
+    "category": "Revenant",
+    "code": "[&Bs2yAAA=]",
+    "id": 45773,
+    "name": "Soulcleave's Summit"
+  },
+  {
+    "type": "skill",
+    "category": "Revenant",
+    "code": "[&Bmz1AAA=]",
+    "id": 62828,
+    "name": "True Strike"
+  },
+  {
+    "type": "skill",
+    "category": "Revenant",
+    "code": "[&Br0dAQA=]",
+    "id": 73149,
+    "name": "Blitz Mines"
+  },
+  {
+    "type": "skill",
+    "category": "Revenant",
+    "code": "[&BjFyAAA=]",
+    "id": 29233,
+    "name": "Chilling Isolation"
+  },
+  {
+    "type": "skill",
+    "category": "Revenant",
+    "code": "[&Bu97AAA=]",
+    "id": 31727,
+    "name": "Forceful Displacement"
+  },
+  {
+    "type": "skill",
+    "category": "Revenant",
+    "code": "[&BkdtAAA=]",
+    "id": 27975,
+    "name": "Rite of the Great Dwarf"
+  },
+  {
+    "type": "skill",
+    "category": "Revenant",
+    "code": "[&BqttAAA=]",
+    "id": 28075,
+    "name": "Chaotic Release"
+  },
+  {
+    "type": "skill",
+    "category": "Thief",
+    "code": "[&BpiJAAA=]",
+    "id": 35224,
+    "name": "Elemental Requiem"
+  },
+  {
+    "type": "skill",
+    "category": "Thief",
+    "code": "[&BigzAAA=]",
+    "id": 13096,
+    "name": "Ice Drake Venom"
+  },
+  {
+    "type": "skill",
+    "category": "Thief",
+    "code": "[&Bjd3AAA=]",
+    "id": 30519,
+    "name": "Reflexive Strike"
+  },
+  {
+    "type": "skill",
+    "category": "Thief",
+    "code": "[&BhodAQA=]",
+    "id": 72986,
+    "name": "Unsuspecting Strike"
+  },
+  {
+    "type": "skill",
+    "category": "Thief",
+    "code": "[&BggsAQA=]",
+    "id": 76808,
+    "name": "Inquest Portal Device"
+  },
+  {
+    "type": "skill",
+    "category": "Thief",
+    "code": "[&BhszAAA=]",
+    "id": 13083,
+    "name": "Disabling Shot"
+  },
+  {
+    "type": "skill",
+    "category": "Thief",
+    "code": "[&Br0rAQA=]",
+    "id": 76733,
+    "name": "Zephyrite Sun Crystal"
+  },
+  {
+    "type": "skill",
+    "category": "Thief",
+    "code": "[&BsQOAQA=]",
+    "id": 69316,
+    "name": "Death's Judgment"
+  },
+  {
+    "type": "skill",
+    "category": "Warrior",
+    "code": "[&BoYsAQA=]",
+    "id": 76934,
+    "name": "\"Brace Yourselves!\""
+  },
+  {
+    "type": "skill",
+    "category": "Warrior",
+    "code": "[&Bkh5AAA=]",
+    "id": 31048,
+    "name": "Wild Whirl"
+  },
+  {
+    "type": "skill",
+    "category": "Warrior",
+    "code": "[&Bjg4AAA=]",
+    "id": 14392,
+    "name": "Endure Pain"
+  },
+  {
+    "type": "skill",
+    "category": "Warrior",
+    "code": "[&Bi6qAAA=]",
+    "id": 43566,
+    "name": "Eviscerate"
+  },
+  {
+    "type": "skill",
+    "category": "Warrior",
+    "code": "[&BpE4AAA=]",
+    "id": 14481,
+    "name": "Split Shot"
+  },
+  {
+    "type": "skill",
+    "category": "Warrior",
     "code": "[&Bvf1AAA=]",
     "id": 62967,
     "name": "Flow Stabilizer"
   },
   {
     "type": "skill",
-    "code": "[&BtLvAAA=]",
-    "id": 61394,
-    "name": "Voltaic Expulsion"
+    "category": "Warrior",
+    "code": "[&Bl84AAA=]",
+    "id": 14431,
+    "name": "Dual Shot"
   },
   {
     "type": "skill",
-    "code": "[&BsncAAA=]",
-    "id": 56521,
-    "name": "Stone Fist"
-  },
-  {
-    "type": "skill",
-    "code": "[&BnWYAAA=]",
-    "id": 39029,
-    "name": "Red Marble"
-  },
-  {
-    "type": "skill",
-    "code": "[&BtM4AAA=]",
-    "id": 14547,
-    "name": "Arcing Slice"
-  },
-  {
-    "type": "skill",
-    "code": "[&BkoiAQA=]",
-    "id": 74314,
-    "name": "Rallying Roar"
-  },
-  {
-    "type": "skill",
-    "code": "[&BvAaAQA=]",
-    "id": 72432,
-    "name": "Frightening Speed"
-  },
-  {
-    "type": "skill",
-    "code": "[&BocwAAA=]",
-    "id": 12423,
-    "name": "Rending Slash"
-  },
-  {
-    "type": "skill",
-    "code": "[&BgUYAAA=]",
-    "id": 6149,
-    "name": "Timed Charge"
-  },
-  {
-    "type": "skill",
-    "code": "[&Bs0xAAA=]",
-    "id": 12749,
-    "name": "Immobilizing Whirl"
-  },
-  {
-    "type": "skill",
-    "code": "[&BuNpAAA=]",
-    "id": 27107,
-    "name": "Impossible Odds"
-  },
-  {
-    "type": "skill",
-    "code": "[&BppxAAA=]",
-    "id": 29082,
-    "name": "Natural Harmony"
-  },
-  {
-    "type": "skill",
-    "code": "[&BiD1AAA=]",
-    "id": 62752,
-    "name": "Arcing Mists"
-  },
-  {
-    "type": "skill",
-    "code": "[&BtcnAAA=]",
-    "id": 10199,
-    "name": "Portal Exeunt"
-  },
-  {
-    "type": "skill",
-    "code": "[&BqrtAAA=]",
-    "id": 60842,
-    "name": "Claw"
-  },
-  {
-    "type": "skill",
-    "code": "[&Bg7rAAA=]",
-    "id": 60174,
-    "name": "Mighty Spin"
-  },
-  {
-    "type": "skill",
-    "code": "[&BmoMAQA=]",
-    "id": 68714,
-    "name": "Slash"
-  },
-  {
-    "type": "skill",
-    "code": "[&BhUnAQA=]",
-    "id": 75541,
-    "name": "Eruption of Rot"
-  },
-  {
-    "type": "skill",
-    "code": "[&BsSgAAA=]",
-    "id": 41156,
-    "name": "Fang Grapple"
-  },
-  {
-    "type": "skill",
-    "code": "[&BjIsAQA=]",
-    "id": 76850,
-    "name": "Tale of the Soulkeeper"
-  },
-  {
-    "type": "skill",
-    "code": "[&BswOAAA=]",
-    "id": 3788,
-    "name": "Jab"
-  },
-  {
-    "type": "skill",
-    "code": "[&BgAzAAA=]",
-    "id": 13056,
-    "name": "Prepare Seal Area"
-  },
-  {
-    "type": "skill",
-    "code": "[&BpsoAQA=]",
-    "id": 75931,
-    "name": ""
-  },
-  {
-    "type": "skill",
-    "code": "[&BmCqAAA=]",
-    "id": 43616,
-    "name": "Crystal Slash"
-  },
-  {
-    "type": "skill",
-    "code": "[&BijRAAA=]",
-    "id": 53544,
-    "name": "Jutting Ice Spikes"
-  },
-  {
-    "type": "skill",
-    "code": "[&BtQyAAA=]",
-    "id": 13012,
-    "name": "Head Shot"
-  },
-  {
-    "type": "skill",
-    "code": "[&Bm26AAA=]",
-    "id": 47725,
-    "name": "Fist"
-  },
-  {
-    "type": "skill",
-    "code": "[&Bv72AAA=]",
-    "id": 63230,
-    "name": "Well of Silence"
-  },
-  {
-    "type": "skill",
-    "code": "[&BmRvAAA=]",
-    "id": 28516,
-    "name": "Inspiring Reinforcement"
-  },
-  {
-    "type": "skill",
-    "code": "[&BnMEAQA=]",
-    "id": 66675,
-    "name": ""
-  },
-  {
-    "type": "skill",
-    "code": "[&Bl8GAAA=]",
-    "id": 1631,
-    "name": "Throw Javelin"
-  },
-  {
-    "type": "skill",
-    "code": "[&BgaoAAA=]",
-    "id": 43014,
-    "name": "Leave Beastmode"
-  },
-  {
-    "type": "skill",
-    "code": "[&Bi8dAQA=]",
-    "id": 73007,
-    "name": "Extirpate"
-  },
-  {
-    "type": "skill",
-    "code": "[&Bod3AAA=]",
-    "id": 30599,
-    "name": "Orbital Strike"
-  },
-  {
-    "type": "skill",
-    "code": "[&Br4dAQA=]",
-    "id": 73150,
-    "name": "Predator's Ambush"
-  },
-  {
-    "type": "skill",
-    "code": "[&BpoxAAA=]",
-    "id": 12698,
-    "name": "Lightning Breath"
-  },
-  {
-    "type": "skill",
-    "code": "[&Bie8AAA=]",
-    "id": 48167,
-    "name": "Scythe Slash"
-  },
-  {
-    "type": "skill",
-    "code": "[&BpeGAAA=]",
-    "id": 34455,
-    "name": "Sweep"
-  },
-  {
-    "type": "skill",
-    "code": "[&BrvlAAA=]",
-    "id": 58811,
-    "name": "Icequake"
-  },
-  {
-    "type": "skill",
-    "code": "[&BpNyAAA=]",
-    "id": 29331,
-    "name": "Forceful Bash"
-  },
-  {
-    "type": "skill",
-    "code": "[&Bv8oAQA=]",
-    "id": 76031,
-    "name": "Blob of Blight"
-  },
-  {
-    "type": "skill",
-    "code": "[&BjEnAQA=]",
-    "id": 75569,
-    "name": "Fluxlance Salvo"
-  },
-  {
-    "type": "skill",
-    "code": "[&BmUEAAA=]",
-    "id": 1125,
-    "name": "Eat Egg"
-  },
-  {
-    "type": "skill",
-    "code": "[&Bp3LAAA=]",
-    "id": 52125,
-    "name": "Brandstone Impact"
-  },
-  {
-    "type": "skill",
-    "code": "[&BjkZAQA=]",
-    "id": 71993,
-    "name": "Molten Meteor"
-  },
-  {
-    "type": "skill",
-    "code": "[&Br4VAAA=]",
-    "id": 5566,
-    "name": "Steam"
-  },
-  {
-    "type": "skill",
-    "code": "[&BtgyAAA=]",
-    "id": 13016,
-    "name": "Flanking Strike"
-  },
-  {
-    "type": "skill",
-    "code": "[&BufcAAA=]",
-    "id": 56551,
-    "name": "Residual Impact"
-  },
-  {
-    "type": "skill",
-    "code": "[&BkXEAAA=]",
-    "id": 50245,
-    "name": "Jab Combo"
-  },
-  {
-    "type": "skill",
-    "code": "[&BlCbAAA=]",
-    "id": 39760,
-    "name": "Solar Bolt"
-  },
-  {
-    "type": "skill",
-    "code": "[&BusjAAA=]",
-    "id": 9195,
-    "name": "Ring of Warding"
-  },
-  {
-    "type": "skill",
-    "code": "[&BpWbAAA=]",
-    "id": 39829,
-    "name": "Crimson Dawn"
-  },
-  {
-    "type": "skill",
-    "code": "[&BnsxAQA=]",
-    "id": 78203,
-    "name": "Call to Anguish"
-  },
-  {
-    "type": "skill",
-    "code": "[&BokpAAA=]",
-    "id": 10633,
-    "name": "Ripple of Horror"
+    "category": "Warrior",
+    "code": "[&Bj44AAA=]",
+    "id": 14398,
+    "name": "Throw Axe"
   },
   {
     "type": "recipe",
-    "code": "[&CXYAAAA=]",
-    "id": 118,
+    "category": "Amulet",
+    "code": "[&CRwOAAA=]",
+    "id": 3612,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CVoBAAA=]",
-    "id": 346,
+    "category": "Amulet",
+    "code": "[&CVIaAAA=]",
+    "id": 6738,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CQQCAAA=]",
-    "id": 516,
+    "category": "Amulet",
+    "code": "[&CZ4NAAA=]",
+    "id": 3486,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CcYDAAA=]",
-    "id": 966,
+    "category": "Axe",
+    "code": "[&CX8bAAA=]",
+    "id": 7039,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CRsEAAA=]",
-    "id": 1051,
+    "category": "Axe",
+    "code": "[&CWQvAAA=]",
+    "id": 12132,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CVIEAAA=]",
-    "id": 1106,
+    "category": "Axe",
+    "code": "[&CeAXAAA=]",
+    "id": 6112,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CXAEAAA=]",
-    "id": 1136,
+    "category": "Backpack",
+    "code": "[&CT0kAAA=]",
+    "id": 9277,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CYsEAAA=]",
-    "id": 1163,
+    "category": "Backpack",
+    "code": "[&CTEkAAA=]",
+    "id": 9265,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CY4EAAA=]",
-    "id": 1166,
+    "category": "Backpack",
+    "code": "[&Cf4nAAA=]",
+    "id": 10238,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CX4FAAA=]",
-    "id": 1406,
+    "category": "Bag",
+    "code": "[&CWMFAAA=]",
+    "id": 1379,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CcEHAAA=]",
-    "id": 1985,
+    "category": "Bag",
+    "code": "[&Cf8zAAA=]",
+    "id": 13311,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CQ8IAAA=]",
-    "id": 2063,
+    "category": "Bag",
+    "code": "[&CbwvAAA=]",
+    "id": 12220,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CToIAAA=]",
-    "id": 2106,
+    "category": "Boots",
+    "code": "[&CdIGAAA=]",
+    "id": 1746,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CZQKAAA=]",
-    "id": 2708,
+    "category": "Boots",
+    "code": "[&CVQJAAA=]",
+    "id": 2388,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CfUMAAA=]",
-    "id": 3317,
+    "category": "Boots",
+    "code": "[&CbItAAA=]",
+    "id": 11698,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CaUNAAA=]",
-    "id": 3493,
+    "category": "Bulk",
+    "code": "[&CfMKAAA=]",
+    "id": 2803,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&Cc0NAAA=]",
-    "id": 3533,
+    "category": "Bulk",
+    "code": "[&Ce8KAAA=]",
+    "id": 2799,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CS8OAAA=]",
-    "id": 3631,
+    "category": "Bulk",
+    "code": "[&CaoYAAA=]",
+    "id": 6314,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CXgOAAA=]",
-    "id": 3704,
+    "category": "Coat",
+    "code": "[&CfovAAA=]",
+    "id": 12282,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&Cb0OAAA=]",
-    "id": 3773,
+    "category": "Coat",
+    "code": "[&CdYHAAA=]",
+    "id": 2006,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CdEOAAA=]",
-    "id": 3793,
+    "category": "Coat",
+    "code": "[&CbopAAA=]",
+    "id": 10682,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CVcPAAA=]",
-    "id": 3927,
+    "category": "Component",
+    "code": "[&CdUUAAA=]",
+    "id": 5333,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CfkPAAA=]",
-    "id": 4089,
+    "category": "Component",
+    "code": "[&CQoBAAA=]",
+    "id": 266,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CRMRAAA=]",
-    "id": 4371,
+    "category": "Component",
+    "code": "[&CSsCAAA=]",
+    "id": 555,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CfMRAAA=]",
-    "id": 4595,
+    "category": "Consumable",
+    "code": "[&CaAeAAA=]",
+    "id": 7840,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CRUUAAA=]",
-    "id": 5141,
+    "category": "Consumable",
+    "code": "[&Cc0zAAA=]",
+    "id": 13261,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CUsVAAA=]",
-    "id": 5451,
+    "category": "Consumable",
+    "code": "[&CaMeAAA=]",
+    "id": 7843,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CckVAAA=]",
-    "id": 5577,
+    "category": "Dagger",
+    "code": "[&CS0ZAAA=]",
+    "id": 6445,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CQwYAAA=]",
-    "id": 6156,
+    "category": "Dagger",
+    "code": "[&Cf4VAAA=]",
+    "id": 5630,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&Ca8ZAAA=]",
-    "id": 6575,
+    "category": "Dagger",
+    "code": "[&CcAnAAA=]",
+    "id": 10176,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CTobAAA=]",
-    "id": 6970,
+    "category": "Dessert",
+    "code": "[&CewjAAA=]",
+    "id": 9196,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CS8cAAA=]",
-    "id": 7215,
+    "category": "Dessert",
+    "code": "[&CToMAAA=]",
+    "id": 3130,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CREdAAA=]",
-    "id": 7441,
+    "category": "Dessert",
+    "code": "[&CZIaAAA=]",
+    "id": 6802,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CZceAAA=]",
-    "id": 7831,
+    "category": "Dye",
+    "code": "[&CR8NAAA=]",
+    "id": 3359,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CUMfAAA=]",
-    "id": 8003,
+    "category": "Dye",
+    "code": "[&CTANAAA=]",
+    "id": 3376,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CUwfAAA=]",
-    "id": 8012,
+    "category": "Dye",
+    "code": "[&CScNAAA=]",
+    "id": 3367,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CU4hAAA=]",
-    "id": 8526,
+    "category": "Earring",
+    "code": "[&CbgOAAA=]",
+    "id": 3768,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CQsiAAA=]",
-    "id": 8715,
+    "category": "Earring",
+    "code": "[&CQEpAAA=]",
+    "id": 10497,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CbEiAAA=]",
-    "id": 8881,
+    "category": "Earring",
+    "code": "[&CbMNAAA=]",
+    "id": 3507,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CdsjAAA=]",
-    "id": 9179,
+    "category": "Feast",
+    "code": "[&CaUoAAA=]",
+    "id": 10405,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CfwkAAA=]",
-    "id": 9468,
+    "category": "Feast",
+    "code": "[&CesqAAA=]",
+    "id": 10987,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&Cf0kAAA=]",
-    "id": 9469,
+    "category": "Feast",
+    "code": "[&CcQMAAA=]",
+    "id": 3268,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CU0mAAA=]",
-    "id": 9805,
+    "category": "Focus",
+    "code": "[&CckPAAA=]",
+    "id": 4041,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CZUmAAA=]",
-    "id": 9877,
+    "category": "Focus",
+    "code": "[&CbMZAAA=]",
+    "id": 6579,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CdkoAAA=]",
-    "id": 10457,
+    "category": "Focus",
+    "code": "[&Cb8PAAA=]",
+    "id": 4031,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CdwoAAA=]",
-    "id": 10460,
+    "category": "Gloves",
+    "code": "[&CYYuAAA=]",
+    "id": 11910,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CQ0qAAA=]",
-    "id": 10765,
+    "category": "Gloves",
+    "code": "[&CUUJAAA=]",
+    "id": 2373,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CaorAAA=]",
-    "id": 11178,
+    "category": "Gloves",
+    "code": "[&CYEKAAA=]",
+    "id": 2689,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CeUsAAA=]",
-    "id": 11493,
+    "category": "Greatsword",
+    "code": "[&CR8WAAA=]",
+    "id": 5663,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CYotAAA=]",
-    "id": 11658,
+    "category": "Greatsword",
+    "code": "[&CcQjAAA=]",
+    "id": 9156,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CSIuAAA=]",
-    "id": 11810,
+    "category": "Greatsword",
+    "code": "[&CbEXAAA=]",
+    "id": 6065,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CU4uAAA=]",
-    "id": 11854,
+    "category": "GuildConsumable",
+    "code": "[&CSstAAA=]",
+    "id": 11563,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CYEvAAA=]",
-    "id": 12161,
+    "category": "GuildConsumable",
+    "code": "[&CSMoAAA=]",
+    "id": 10275,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CbYwAAA=]",
-    "id": 12470,
+    "category": "GuildConsumable",
+    "code": "[&CZcrAAA=]",
+    "id": 11159,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CQkxAAA=]",
-    "id": 12553,
+    "category": "GuildConsumableWvw",
+    "code": "[&CYgnAAA=]",
+    "id": 10120,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CSoyAAA=]",
-    "id": 12842,
+    "category": "GuildConsumableWvw",
+    "code": "[&CSssAAA=]",
+    "id": 11307,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CUwyAAA=]",
-    "id": 12876,
+    "category": "GuildConsumableWvw",
+    "code": "[&CfYoAAA=]",
+    "id": 10486,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CRA0AAA=]",
-    "id": 13328,
+    "category": "GuildDecoration",
+    "code": "[&CS08AAA=]",
+    "id": 15405,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&CWc0AAA=]",
-    "id": 13415,
+    "category": "GuildDecoration",
+    "code": "[&CVM2AAA=]",
+    "id": 13907,
     "name": ""
   },
   {
     "type": "recipe",
-    "code": "[&Cb00AAA=]",
-    "id": 13501,
+    "category": "GuildDecoration",
+    "code": "[&CQQ0AAA=]",
+    "id": 13316,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Hammer",
+    "code": "[&CX4nAAA=]",
+    "id": 10110,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Hammer",
+    "code": "[&CWQqAAA=]",
+    "id": 10852,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Hammer",
+    "code": "[&CSg0AAA=]",
+    "id": 13352,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Harpoon",
+    "code": "[&CZAYAAA=]",
+    "id": 6288,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Harpoon",
+    "code": "[&CfYmAAA=]",
+    "id": 9974,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Harpoon",
+    "code": "[&CZAeAAA=]",
+    "id": 7824,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Helm",
+    "code": "[&CTUfAAA=]",
+    "id": 7989,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Helm",
+    "code": "[&CacJAAA=]",
+    "id": 2471,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Helm",
+    "code": "[&CXgIAAA=]",
+    "id": 2168,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "IngredientCooking",
+    "code": "[&CZ0ZAAA=]",
+    "id": 6557,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "IngredientCooking",
+    "code": "[&CfEoAAA=]",
+    "id": 10481,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "IngredientCooking",
+    "code": "[&CdkLAAA=]",
+    "id": 3033,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Inscription",
+    "code": "[&CZIxAAA=]",
+    "id": 12690,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Inscription",
+    "code": "[&Cb0AAAA=]",
+    "id": 189,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Inscription",
+    "code": "[&CYEAAAA=]",
+    "id": 129,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Insignia",
+    "code": "[&CewAAAA=]",
+    "id": 236,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Insignia",
+    "code": "[&CQ8pAAA=]",
+    "id": 10511,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Insignia",
+    "code": "[&Cb4oAAA=]",
+    "id": 10430,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "LegendaryComponent",
+    "code": "[&CVopAAA=]",
+    "id": 10586,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "LegendaryComponent",
+    "code": "[&CdotAAA=]",
+    "id": 11738,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "LegendaryComponent",
+    "code": "[&CTUpAAA=]",
+    "id": 10549,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Leggings",
+    "code": "[&Ca0DAAA=]",
+    "id": 941,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Leggings",
+    "code": "[&CacEAAA=]",
+    "id": 1191,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Leggings",
+    "code": "[&CT0rAAA=]",
+    "id": 11069,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "LongBow",
+    "code": "[&CT8SAAA=]",
+    "id": 4671,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "LongBow",
+    "code": "[&CYUTAAA=]",
+    "id": 4997,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "LongBow",
+    "code": "[&CdkwAAA=]",
+    "id": 12505,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Mace",
+    "code": "[&CasVAAA=]",
+    "id": 5547,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Mace",
+    "code": "[&CewaAAA=]",
+    "id": 6892,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Mace",
+    "code": "[&CfIWAAA=]",
+    "id": 5874,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Meal",
+    "code": "[&CfwjAAA=]",
+    "id": 9212,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Meal",
+    "code": "[&CRQvAAA=]",
+    "id": 12052,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Meal",
+    "code": "[&CfYLAAA=]",
+    "id": 3062,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Pistol",
+    "code": "[&CRcnAAA=]",
+    "id": 10007,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Pistol",
+    "code": "[&CbsmAAA=]",
+    "id": 9915,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Pistol",
+    "code": "[&CcUbAAA=]",
+    "id": 7109,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Potion",
+    "code": "[&Ca0QAAA=]",
+    "id": 4269,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Potion",
+    "code": "[&CU4RAAA=]",
+    "id": 4430,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Potion",
+    "code": "[&CcoQAAA=]",
+    "id": 4298,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Refinement",
+    "code": "[&CVYmAAA=]",
+    "id": 9814,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Refinement",
+    "code": "[&CRgAAAA=]",
+    "id": 24,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Refinement",
+    "code": "[&CRUAAAA=]",
+    "id": 21,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "RefinementEctoplasm",
+    "code": "[&CZkcAAA=]",
+    "id": 7321,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "RefinementObsidian",
+    "code": "[&CZUcAAA=]",
+    "id": 7317,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "RefinementObsidian",
+    "code": "[&CZIcAAA=]",
+    "id": 7314,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "RefinementObsidian",
+    "code": "[&CcszAAA=]",
+    "id": 13259,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Rifle",
+    "code": "[&CTYbAAA=]",
+    "id": 6966,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Rifle",
+    "code": "[&CecRAAA=]",
+    "id": 4583,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Rifle",
+    "code": "[&CV4dAAA=]",
+    "id": 7518,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Ring",
+    "code": "[&CdYNAAA=]",
+    "id": 3542,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Ring",
+    "code": "[&CfINAAA=]",
+    "id": 3570,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Ring",
+    "code": "[&CdUOAAA=]",
+    "id": 3797,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Scepter",
+    "code": "[&CUsPAAA=]",
+    "id": 3915,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Scepter",
+    "code": "[&CdsqAAA=]",
+    "id": 10971,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Scepter",
+    "code": "[&CU0PAAA=]",
+    "id": 3917,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Seasoning",
+    "code": "[&CR4LAAA=]",
+    "id": 2846,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Seasoning",
+    "code": "[&CW0LAAA=]",
+    "id": 2925,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Seasoning",
+    "code": "[&CWsLAAA=]",
+    "id": 2923,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Shield",
+    "code": "[&CUQYAAA=]",
+    "id": 6212,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Shield",
+    "code": "[&CQYZAAA=]",
+    "id": 6406,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Shield",
+    "code": "[&CUIVAAA=]",
+    "id": 5442,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "ShortBow",
+    "code": "[&CYUUAAA=]",
+    "id": 5253,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "ShortBow",
+    "code": "[&CT4dAAA=]",
+    "id": 7486,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "ShortBow",
+    "code": "[&CawUAAA=]",
+    "id": 5292,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Shoulders",
+    "code": "[&CTYqAAA=]",
+    "id": 10806,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Shoulders",
+    "code": "[&CYAJAAA=]",
+    "id": 2432,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Shoulders",
+    "code": "[&CWkgAAA=]",
+    "id": 8297,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Snack",
+    "code": "[&CegLAAA=]",
+    "id": 3048,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Snack",
+    "code": "[&CSYkAAA=]",
+    "id": 9254,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Snack",
+    "code": "[&CfojAAA=]",
+    "id": 9210,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Soup",
+    "code": "[&CcQLAAA=]",
+    "id": 3012,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Soup",
+    "code": "[&CfonAAA=]",
+    "id": 10234,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Soup",
+    "code": "[&CR4kAAA=]",
+    "id": 9246,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Speargun",
+    "code": "[&CcoTAAA=]",
+    "id": 5066,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Speargun",
+    "code": "[&CVISAAA=]",
+    "id": 4690,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Speargun",
+    "code": "[&CSorAAA=]",
+    "id": 11050,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Staff",
+    "code": "[&CREQAAA=]",
+    "id": 4113,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Staff",
+    "code": "[&CQcQAAA=]",
+    "id": 4103,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Staff",
+    "code": "[&CQwQAAA=]",
+    "id": 4108,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Sword",
+    "code": "[&CekdAAA=]",
+    "id": 7657,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Sword",
+    "code": "[&CWgoAAA=]",
+    "id": 10344,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Sword",
+    "code": "[&CYYWAAA=]",
+    "id": 5766,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Torch",
+    "code": "[&CcciAAA=]",
+    "id": 8903,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Torch",
+    "code": "[&CcgiAAA=]",
+    "id": 8904,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Torch",
+    "code": "[&CREqAAA=]",
+    "id": 10769,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Trident",
+    "code": "[&CQIdAAA=]",
+    "id": 7426,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Trident",
+    "code": "[&CXIQAAA=]",
+    "id": 4210,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Trident",
+    "code": "[&CWwQAAA=]",
+    "id": 4204,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "UpgradeComponent",
+    "code": "[&CaE2AAA=]",
+    "id": 13985,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "UpgradeComponent",
+    "code": "[&CSIyAAA=]",
+    "id": 12834,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "UpgradeComponent",
+    "code": "[&CeYBAAA=]",
+    "id": 486,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Warhorn",
+    "code": "[&CUYTAAA=]",
+    "id": 4934,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Warhorn",
+    "code": "[&CcIbAAA=]",
+    "id": 7106,
+    "name": ""
+  },
+  {
+    "type": "recipe",
+    "category": "Warhorn",
+    "code": "[&CV8dAAA=]",
+    "id": 7519,
     "name": ""
   },
   {
     "type": "achievement",
-    "id": 1180,
-    "name": "Toxic Krait Historian"
+    "category": "(other)",
+    "id": 6392,
+    "name": "Daily New Kaineng Purist Slayer"
   },
   {
     "type": "achievement",
-    "id": 5827,
-    "name": "Community Warlord"
+    "category": "(other)",
+    "id": 2467,
+    "name": "Daily Recommended Fractal\u2014Scale 18"
   },
   {
     "type": "achievement",
-    "id": 536,
-    "name": "Lost and Found"
+    "category": "(other)",
+    "id": 5678,
+    "name": "Ooze Transportation 201"
   },
   {
     "type": "achievement",
-    "id": 3214,
-    "name": "Quirky Quaggan Quest"
+    "category": "(other)",
+    "id": 6579,
+    "name": "(Weekly) Dragon Bash Festivities"
   },
   {
     "type": "achievement",
-    "id": 2389,
-    "name": "Quip I: The Experimental Pistol"
+    "category": "(other)",
+    "id": 1027,
+    "name": "Candy Craver III"
   },
   {
     "type": "achievement",
-    "id": 6462,
-    "name": "Echovald Wilds Insight: Saprophyte's Pond"
+    "category": "(other)",
+    "id": 1184,
+    "name": "Toxic Field Researcher"
   },
   {
     "type": "achievement",
-    "id": 4570,
-    "name": "Chasing Tales: Locus of Power"
+    "category": "(other)",
+    "id": 4847,
+    "name": "Mount Master"
   },
   {
     "type": "achievement",
-    "id": 6527,
-    "name": "Leaps Abound"
+    "category": "(other)",
+    "id": 4696,
+    "name": "Daily Dragonfall Cocoon Crystallizer"
   },
   {
     "type": "achievement",
-    "id": 6020,
-    "name": "Revenge of Murakai"
+    "category": "Permanent",
+    "id": 8456,
+    "name": "Mount Balrior: Convergence Conqueror"
   },
   {
     "type": "achievement",
-    "id": 8436,
-    "name": "Foefire Weapon Collection"
+    "category": "Permanent",
+    "id": 5970,
+    "name": "Revenge of the Claw of Jormag"
   },
   {
     "type": "achievement",
-    "id": 1781,
-    "name": "Luminescent Shoulderguard"
+    "category": "Permanent",
+    "id": 163,
+    "name": "Conundrum Cubed"
   },
   {
     "type": "achievement",
-    "id": 6600,
-    "name": "Leveling Up I"
+    "category": "Permanent",
+    "id": 6756,
+    "name": "Investigative Study 4"
   },
   {
     "type": "achievement",
-    "id": 15,
-    "name": "Tinkerer"
+    "category": "Permanent",
+    "id": 6326,
+    "name": "The Cycle, Reborn"
   },
   {
     "type": "achievement",
-    "id": 8773,
-    "name": "It's the Ursan Way"
+    "category": "Permanent",
+    "id": 3274,
+    "name": "Dragon's Breath"
   },
   {
     "type": "achievement",
-    "id": 3945,
-    "name": "Shut the Doors"
+    "category": "Permanent",
+    "id": 1551,
+    "name": "WvW Tournament Contestant"
+  },
+  {
+    "type": "achievement",
+    "category": "Permanent",
+    "id": 2637,
+    "name": "Frenzy I: The Experimental Harpoon Gun"
+  },
+  {
+    "type": "achievement",
+    "category": "Repeatable",
+    "id": 6699,
+    "name": "Memories of Crystal and Fury"
+  },
+  {
+    "type": "achievement",
+    "category": "Repeatable",
+    "id": 3742,
+    "name": "Breaking the Bank: Final Vault"
+  },
+  {
+    "type": "achievement",
+    "category": "Repeatable",
+    "id": 6981,
+    "name": "Continuous Cultivate Celestial"
+  },
+  {
+    "type": "achievement",
+    "category": "Repeatable",
+    "id": 5198,
+    "name": "Emblem of the Avenger"
+  },
+  {
+    "type": "achievement",
+    "category": "Repeatable",
+    "id": 8814,
+    "name": "Incursive Investigation: Infinite Recursion"
+  },
+  {
+    "type": "achievement",
+    "category": "Repeatable",
+    "id": 7690,
+    "name": "Emotional Baggage"
+  },
+  {
+    "type": "achievement",
+    "category": "Repeatable",
+    "id": 2788,
+    "name": "Toypocalypse Survivor"
+  },
+  {
+    "type": "achievement",
+    "category": "Repeatable",
+    "id": 4056,
+    "name": "Ulla's Rival"
   },
   {
     "type": "map",
-    "id": 2434,
-    "name": "Gooloopa Deeps"
+    "category": "landmark",
+    "id": 3624,
+    "name": "Dubious Islet"
   },
   {
     "type": "map",
-    "id": 694,
-    "name": "Restless Deeps"
+    "category": "landmark",
+    "id": 1909,
+    "name": "Crash Site 1"
   },
   {
     "type": "map",
-    "id": 1884,
-    "name": "Guild Initiative Headquarters"
+    "category": "landmark",
+    "id": 2012,
+    "name": "Chak Staging Area"
   },
   {
     "type": "map",
-    "id": 1692,
+    "category": "landmark",
+    "id": 578,
+    "name": "Balddistead"
+  },
+  {
+    "type": "map",
+    "category": "landmark",
+    "id": 3808,
+    "name": "The Twin's Table"
+  },
+  {
+    "type": "map",
+    "category": "landmark",
+    "id": 2536,
+    "name": "Wyvern's Den"
+  },
+  {
+    "type": "map",
+    "category": "landmark",
+    "id": 268,
+    "name": "Rook's Row"
+  },
+  {
+    "type": "map",
+    "category": "landmark",
+    "id": 1680,
+    "name": "Gloomirk Outpost"
+  },
+  {
+    "type": "map",
+    "category": "unlock",
+    "id": 1738,
+    "name": "Crucible of Eternity"
+  },
+  {
+    "type": "map",
+    "category": "unlock",
+    "id": 3908,
+    "name": "unlock"
+  },
+  {
+    "type": "map",
+    "category": "unlock",
+    "id": 1757,
+    "name": "Fractals of the Mists"
+  },
+  {
+    "type": "map",
+    "category": "unlock",
+    "id": 1735,
+    "name": "The Ruined City of Arah"
+  },
+  {
+    "type": "map",
+    "category": "unlock",
+    "id": 1739,
+    "name": "Honor of the Waves"
+  },
+  {
+    "type": "map",
+    "category": "unlock",
+    "id": 1736,
+    "name": "Twilight Arbor"
+  },
+  {
+    "type": "map",
+    "category": "unlock",
+    "id": 2850,
+    "name": "unlock"
+  },
+  {
+    "type": "map",
+    "category": "unlock",
+    "id": 1734,
+    "name": "Citadel of Flame"
+  },
+  {
+    "type": "map",
+    "category": "vista",
+    "id": 3346,
     "name": "vista"
   },
   {
     "type": "map",
-    "id": 3573,
-    "name": "Balkor's Camp"
+    "category": "vista",
+    "id": 1956,
+    "name": "vista"
   },
   {
     "type": "map",
-    "id": 1157,
-    "name": "The Envoy's Shelter"
+    "category": "vista",
+    "id": 2157,
+    "name": "vista"
   },
   {
     "type": "map",
-    "id": 3134,
-    "name": "Shrine of the Resilient Ox"
+    "category": "vista",
+    "id": 1544,
+    "name": "vista"
   },
   {
     "type": "map",
-    "id": 354,
-    "name": "Incendio Waypoint"
+    "category": "vista",
+    "id": 1707,
+    "name": "vista"
   },
   {
     "type": "map",
-    "id": 2169,
-    "name": "Rata Novan Remnants"
+    "category": "vista",
+    "id": 3080,
+    "name": "vista"
   },
   {
     "type": "map",
-    "id": 2129,
-    "name": "Riverside Overlook Waypoint"
+    "category": "vista",
+    "id": 2845,
+    "name": "vista"
   },
   {
     "type": "map",
-    "id": 2224,
-    "name": "Chak Den"
+    "category": "vista",
+    "id": 1487,
+    "name": "vista"
   },
   {
     "type": "map",
-    "id": 143,
-    "name": "Svannijem Hold"
+    "category": "waypoint",
+    "id": 3284,
+    "name": "Qinkai Waypoint"
   },
   {
     "type": "map",
-    "id": 2130,
-    "name": "Northern Forward Camp Waypoint"
+    "category": "waypoint",
+    "id": 455,
+    "name": "Saltflood Waypoint"
   },
   {
     "type": "map",
-    "id": 1993,
-    "name": "Northgate"
+    "category": "waypoint",
+    "id": 795,
+    "name": "Verdance Waypoint"
   },
   {
     "type": "map",
-    "id": 432,
-    "name": "Whisperwill Waypoint"
+    "category": "waypoint",
+    "id": 1238,
+    "name": "Citadel Waypoint"
+  },
+  {
+    "type": "map",
+    "category": "waypoint",
+    "id": 3294,
+    "name": "Reflection Arena Waypoint"
+  },
+  {
+    "type": "map",
+    "category": "waypoint",
+    "id": 912,
+    "name": "Hero's Compass Waypoint"
+  },
+  {
+    "type": "map",
+    "category": "waypoint",
+    "id": 1345,
+    "name": "Twilight Arbor Waypoint"
+  },
+  {
+    "type": "map",
+    "category": "waypoint",
+    "id": 593,
+    "name": "Thistlereed Waypoint"
   }
 ]

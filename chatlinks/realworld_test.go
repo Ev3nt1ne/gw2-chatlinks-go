@@ -2,21 +2,37 @@ package chatlinks
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"testing"
 )
 
 // fixture mirrors one entry of testdata/realworld_fixtures.json. Code is
 // only present for types where the live GW2 API exposes a chat_link field
-// directly (item, skill, recipe) — see testdata/gather_fixtures.py. For
+// directly (item, skill, recipe) — see scripts/gather_fixtures.py. For
 // achievement/map, only a real id is available; those fixtures verify
 // self-consistent round-tripping of a real id, not a match against an
 // independently-published code string.
+//
+// Category records the subtype each fixture was sampled to diversify
+// across (item type/dye, skill profession, recipe type, achievement
+// flag, map point type — see scripts/gather_fixtures.py) purely for
+// readable subtest names; the decode/encode logic itself doesn't branch
+// on it.
 type fixture struct {
-	Type string `json:"type"`
-	Code string `json:"code,omitempty"`
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	Type     string `json:"type"`
+	Category string `json:"category"`
+	Code     string `json:"code,omitempty"`
+	ID       int    `json:"id"`
+	Name     string `json:"name"`
+}
+
+func (fx fixture) subtestName() string {
+	label := fx.Name
+	if label == "" {
+		label = fmt.Sprintf("id-%d", fx.ID)
+	}
+	return fmt.Sprintf("%s/%s/%s", fx.Type, fx.Category, label)
 }
 
 func loadFixtures(t *testing.T) []fixture {
@@ -37,7 +53,7 @@ func loadFixtures(t *testing.T) []fixture {
 
 // TestRealWorldFixtures_GroundTruth validates every fixture that carries a
 // real, externally-sourced chat_link string (item/skill/recipe, pulled
-// straight from the live GW2 API — see testdata/gather_fixtures.py): the
+// straight from the live GW2 API — see scripts/gather_fixtures.py): the
 // decoded ID must match the API's own id for that object, and re-encoding
 // must reproduce the exact original bytes.
 func TestRealWorldFixtures_GroundTruth(t *testing.T) {
@@ -48,7 +64,7 @@ func TestRealWorldFixtures_GroundTruth(t *testing.T) {
 			continue
 		}
 		fx := fx
-		t.Run(fx.Type+"/"+fx.Name, func(t *testing.T) {
+		t.Run(fx.subtestName(), func(t *testing.T) {
 			link, err := DecodeSimpleIDLink(fx.Code)
 			if err != nil {
 				t.Fatalf("DecodeSimpleIDLink(%q): %v", fx.Code, err)
@@ -89,7 +105,7 @@ func TestRealWorldFixtures_GroundTruth(t *testing.T) {
 
 // TestRealWorldFixtures_SelfConsistency covers fixture types where the
 // public API doesn't expose a chat_link field (achievement, map points of
-// interest) — see testdata/gather_fixtures.py. These only have a real id,
+// interest) — see scripts/gather_fixtures.py. These only have a real id,
 // so this checks that encoding it and decoding the result recovers the
 // same id, not a match against an independently-published code.
 func TestRealWorldFixtures_SelfConsistency(t *testing.T) {
@@ -100,7 +116,7 @@ func TestRealWorldFixtures_SelfConsistency(t *testing.T) {
 			continue
 		}
 		fx := fx
-		t.Run(fx.Type+"/"+fx.Name, func(t *testing.T) {
+		t.Run(fx.subtestName(), func(t *testing.T) {
 			code, err := EncodeSimpleIDLink(SimpleIDLink{LinkType: fx.Type, ID: fx.ID})
 			if err != nil {
 				t.Fatalf("EncodeSimpleIDLink: %v", err)

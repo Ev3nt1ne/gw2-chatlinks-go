@@ -42,6 +42,39 @@ func TestRun_ItemLink_NoResolve(t *testing.T) {
 	}
 }
 
+func TestRun_AchievementAndMapLinks_NoResolve(t *testing.T) {
+	// Real-world testing (chatlinks/testdata) confirmed achievement (0x0E)
+	// and map (0x04) links are structurally identical to skill/item/recipe
+	// links and already decode correctly via DecodeSimpleIDLink — this
+	// just confirms the CLI actually routes to it instead of falling into
+	// the generic "not implemented" branch.
+	achievementCode, err := chatlinks.EncodeSimpleIDLink(chatlinks.SimpleIDLink{LinkType: "achievement", ID: 1})
+	if err != nil {
+		t.Fatalf("unexpected error building test fixture: %v", err)
+	}
+	mapCode, err := chatlinks.EncodeSimpleIDLink(chatlinks.SimpleIDLink{LinkType: "map", ID: 99})
+	if err != nil {
+		t.Fatalf("unexpected error building test fixture: %v", err)
+	}
+
+	for _, tt := range []struct{ code, wantType string }{
+		{achievementCode, "achievement"},
+		{mapCode, "map"},
+	} {
+		var buf bytes.Buffer
+		if err := run(&buf, tt.code, false); err != nil {
+			t.Fatalf("unexpected error: %v", err)
+		}
+		out := buf.String()
+		if !strings.Contains(out, "type: "+tt.wantType) {
+			t.Errorf("output missing type line for %s: %s", tt.wantType, out)
+		}
+		if strings.Contains(out, "not implemented yet") {
+			t.Errorf("%s link fell through to the unimplemented-type branch: %s", tt.wantType, out)
+		}
+	}
+}
+
 func TestRun_UnimplementedType(t *testing.T) {
 	var buf bytes.Buffer
 	// header 0x01 = coin, no decoder implemented.

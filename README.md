@@ -98,10 +98,39 @@ against 4 real build-template codes (see `chatlinks/chatlinks_test.go`):
   identical) plus synthetic round-trips for Revenant legends, weapons, and
   skill overrides.
 
+### Skill/trait/item/recipe/achievement/map links — 240 real samples
+
 `chatlinks.DecodeSimpleIDLink`/`EncodeSimpleIDLink` handle skill (`0x06`),
-trait (`0x07`), item (`0x02`), and recipe (`0x09`) links structurally per
-the wiki spec — not independently verified against real samples the way
-build templates were. Cross-check important results.
+trait (`0x07`), item (`0x02`), recipe (`0x09`), achievement (`0x0E`), and
+map/point-of-interest (`0x04`) links — all 6 share the same structural
+format (per the wiki spec: header + ID, optionally a quantity byte for
+items, always a trailing zero byte). `chatlinks/testdata/realworld_fixtures.json`
+holds 240 real samples pulled from the live GW2 API
+(`chatlinks/testdata/gather_fixtures.py` regenerates it) and is checked by
+`chatlinks/realworld_test.go` on every `go test` — no network access needed
+at test time, since the fixture data is a static, version-controlled
+snapshot:
+
+- **210 ground-truth pairs** (90 items, 60 skills, 60 recipes) — `/v2/items`,
+  `/v2/skills`, and `/v2/recipes` all expose a `chat_link` field directly, so
+  these check decode *and* round-trip-encode against an independently
+  published code string, not just a self-consistency check.
+- **30 self-consistency pairs** (15 achievements, 15 map points of
+  interest) — `/v2/achievements` and the continents/floors endpoints don't
+  expose `chat_link`, so these only confirm that encoding a real ID and
+  decoding the result recovers the same ID.
+
+This run **found and fixed a real bug**: `EncodeSimpleIDLink` was missing
+the trailing zero byte that every one of the 210 ground-truth samples
+actually has — decode never noticed (it only reads through the ID and
+ignores anything after), but the encoder was silently producing
+shorter-than-canonical codes. The 4-real-build-template-sample testing
+never exercised this, since build templates compute their array lengths
+differently. Fixed; both `EncodeSimpleIDLink` test suites pass clean now.
+
+It also surfaced that achievement and map links decode correctly through
+the existing generic logic with no extra code — only the CLI's dispatch
+table was missing them, now fixed.
 
 ## Development
 

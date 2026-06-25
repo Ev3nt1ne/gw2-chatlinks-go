@@ -58,7 +58,7 @@ func run(w io.Writer, code string, resolve bool) error {
 	switch t {
 	case "build_template":
 		return printBuildTemplate(w, code, resolve)
-	case "skill", "trait", "item", "recipe":
+	case "skill", "trait", "item", "recipe", "achievement", "map":
 		return printSimpleIDLink(w, code, t, resolve)
 	default:
 		fmt.Fprintf(w, "raw hex: %x  (decoder for this type not implemented yet)\n", raw)

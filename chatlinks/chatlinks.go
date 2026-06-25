@@ -242,14 +242,19 @@ func EncodeSimpleIDLink(link SimpleIDLink) (string, error) {
 		if quantity > 0xFF {
 			return "", fmt.Errorf("chatlinks: quantity %d out of range for a 1-byte field", quantity)
 		}
-		raw := make([]byte, 5)
+		// header + quantity + 3-byte id + 1 trailing zero byte. The
+		// trailing byte is real, not assumed: every item chat_link the
+		// live GW2 API returns ends in one (see chatlinks/testdata).
+		raw := make([]byte, 6)
 		raw[0] = header
 		raw[1] = byte(quantity)
 		putU24le(raw, 2, link.ID)
 		return encodeRaw(raw), nil
 	}
 
-	raw := make([]byte, 4)
+	// header + 3-byte id + 1 trailing zero byte — same real-data basis as
+	// the item case above.
+	raw := make([]byte, 5)
 	raw[0] = header
 	putU24le(raw, 1, link.ID)
 	return encodeRaw(raw), nil

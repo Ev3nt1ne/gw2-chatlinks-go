@@ -91,8 +91,6 @@ type BuildTemplate struct {
 	// Weaponmaster Training; nil if no overrides are set or the build
 	// template predates the weapon array (and therefore this section too).
 	SkillOverrideIDs []int
-
-	RawHex string
 }
 
 // DecodeBuildTemplate decodes a build template (header 0x0D) chat link.
@@ -202,7 +200,6 @@ func DecodeBuildTemplate(code string) (BuildTemplate, error) {
 		RevenantLegends:  revenantLegends,
 		WeaponIDs:        weaponIDs,
 		SkillOverrideIDs: skillOverrideIDs,
-		RawHex:           fmt.Sprintf("%x", raw),
 	}, nil
 }
 

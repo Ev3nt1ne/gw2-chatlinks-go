@@ -49,7 +49,7 @@ func HeaderType(raw []byte) string {
 	if len(raw) == 0 {
 		return "unknown(empty)"
 	}
-	if t, ok := HeaderTypes[raw[0]]; ok {
+	if t, ok := headerTypes[raw[0]]; ok {
 		return t
 	}
 	return fmt.Sprintf("unknown(0x%02x)", raw[0])

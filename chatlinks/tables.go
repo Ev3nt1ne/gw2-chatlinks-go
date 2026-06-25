@@ -1,7 +1,7 @@
 package chatlinks
 
-// HeaderTypes maps a chat link's first byte to its link type name.
-var HeaderTypes = map[byte]string{
+// headerTypes maps a chat link's first byte to its link type name.
+var headerTypes = map[byte]string{
 	0x01: "coin",
 	0x02: "item",
 	0x03: "text",
@@ -21,15 +21,15 @@ var HeaderTypes = map[byte]string{
 }
 
 var linkTypeToHeader = func() map[string]byte {
-	m := make(map[string]byte, len(HeaderTypes))
-	for b, t := range HeaderTypes {
+	m := make(map[string]byte, len(headerTypes))
+	for b, t := range headerTypes {
 		m[t] = b
 	}
 	return m
 }()
 
-// Professions maps a build template's profession byte to its name.
-var Professions = map[int]string{
+// professions maps a build template's profession byte to its name.
+var professions = map[int]string{
 	1: "Guardian",
 	2: "Warrior",
 	3: "Engineer",
@@ -41,9 +41,15 @@ var Professions = map[int]string{
 	9: "Revenant",
 }
 
-// WeaponTypes maps a build template's weapon-array entry to its weapon
+// ProfessionName resolves a build template's profession byte to its name.
+func ProfessionName(id int) (string, bool) {
+	name, ok := professions[id]
+	return name, ok
+}
+
+// weaponTypes maps a build template's weapon-array entry to its weapon
 // name, per the wiki's documented "known weapon type IDs" table.
-var WeaponTypes = map[int]string{
+var weaponTypes = map[int]string{
 	5:   "Axe",
 	35:  "Longbow",
 	47:  "Dagger",
@@ -63,10 +69,17 @@ var WeaponTypes = map[int]string{
 	265: "Spear",
 }
 
-// Legends maps a Revenant build template's legend byte to its stance name,
+// WeaponTypeName resolves a build template's weapon-array entry to its
+// weapon name.
+func WeaponTypeName(id int) (string, bool) {
+	name, ok := weaponTypes[id]
+	return name, ok
+}
+
+// legends maps a Revenant build template's legend byte to its stance name,
 // per the wiki's table (itself sourced from the public API's /v2/legends
 // `code` field).
-var Legends = map[int]string{
+var legends = map[int]string{
 	1: "Legendary Dragon Stance",
 	2: "Legendary Assassin Stance",
 	3: "Legendary Dwarf Stance",
@@ -75,4 +88,11 @@ var Legends = map[int]string{
 	6: "Legendary Centaur Stance",
 	7: "Legendary Alliance Stance",
 	8: "Legendary Entity Stance",
+}
+
+// LegendName resolves a Revenant build template's legend byte to its
+// stance name.
+func LegendName(code int) (string, bool) {
+	name, ok := legends[code]
+	return name, ok
 }

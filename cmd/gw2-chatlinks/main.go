@@ -109,7 +109,7 @@ func printBuildTemplate(w io.Writer, code string, resolve bool) error {
 			legendName(rl.AquaticActive), legendName(rl.AquaticInactive))
 	}
 	for _, weaponID := range bt.WeaponIDs {
-		name, ok := chatlinks.WeaponTypes[weaponID]
+		name, ok := chatlinks.WeaponTypeName(weaponID)
 		if !ok {
 			name = fmt.Sprintf("unknown(%d)", weaponID)
 		}
@@ -133,7 +133,7 @@ func legendName(code int) string {
 	if code == 0 {
 		return "(none)"
 	}
-	if name, ok := chatlinks.Legends[code]; ok {
+	if name, ok := chatlinks.LegendName(code); ok {
 		return name
 	}
 	return fmt.Sprintf("unknown(%d)", code)

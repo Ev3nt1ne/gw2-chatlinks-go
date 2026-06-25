@@ -109,7 +109,7 @@ func DecodeBuildTemplate(code string) (BuildTemplate, error) {
 	}
 
 	professionID := int(raw[1])
-	profession, ok := Professions[professionID]
+	profession, ok := professions[professionID]
 	if !ok {
 		profession = fmt.Sprintf("unknown(%d)", professionID)
 	}
@@ -244,7 +244,7 @@ func EncodeBuildTemplate(bt BuildTemplate) (string, error) {
 	// than the Profession display-name string, so encoding is correct
 	// even if a caller builds a BuildTemplate by hand and only sets
 	// ProfessionID.
-	switch Professions[bt.ProfessionID] {
+	switch professions[bt.ProfessionID] {
 	case "Ranger":
 		if bt.RangerPets != nil {
 			profBytes[0] = byte(bt.RangerPets.TerrestrialPet1)

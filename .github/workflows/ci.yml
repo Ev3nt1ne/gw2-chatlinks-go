@@ -15,7 +15,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
-          go-version: "stable"
+          # golangci-lint's binary lags the Go release it's run with; a
+          # too-new GOROOT can make it choke type-checking stdlib vendor
+          # files gated on a newer `go` build tag than the linter binary
+          # itself was built with. Pin to a version known to work with
+          # golangci-lint's current release, independent of "stable" used
+          # by the build/test jobs below.
+          go-version: "1.24"
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v6
         with:
@@ -35,6 +41,7 @@ jobs:
       - run: go vet ./...
       - run: go test ./... -race -coverprofile=coverage.out -covermode=atomic
       - name: Coverage summary
+        if: runner.os != 'Windows'
         run: go tool cover -func=coverage.out
       - uses: actions/upload-artifact@v4
         with:

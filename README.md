@@ -100,6 +100,21 @@ See [VERIFICATION.md](VERIFICATION.md) for exactly what's been checked
 against real game data versus implemented from the spec alone, and how to
 keep it current as the game patches.
 
+## Deferred
+
+Intentionally out of scope for now — none affect decode/encode correctness;
+all live in the optional `--resolve` / `api` enrichment path:
+
+- **No caching in `--resolve`.** Each palette ID is resolved by re-fetching
+  the whole `/v2/professions/{p}` document, so a build with many skills
+  re-fetches the same document repeatedly. Fine for one-off CLI use;
+  deferred until `api.Client` sees heavier programmatic use, where a
+  per-profession cache or a batch resolver would be the right shape.
+- **`api` pins the GW2 schema version to `latest`.** Convenient, but a
+  future ArenaNet schema change could shift field shapes underneath callers.
+  A date-stamped pinned schema would be more defensive; the tradeoff is
+  documented inline in `api/api.go`.
+
 ## Development
 
 ```bash

@@ -31,10 +31,10 @@ func DecodeRaw(code string) ([]byte, error) {
 	}
 	raw, err := base64.StdEncoding.DecodeString(b64)
 	if err != nil {
-		return nil, fmt.Errorf("chatlinks: invalid base64 payload: %w", err)
+		return nil, fmt.Errorf("%w: invalid base64: %w", ErrInvalidPayload, err)
 	}
 	if len(raw) == 0 {
-		return nil, fmt.Errorf("chatlinks: empty payload")
+		return nil, fmt.Errorf("%w: empty payload", ErrInvalidPayload)
 	}
 	return raw, nil
 }
@@ -65,6 +65,30 @@ func u24le(raw []byte, offset int) int {
 
 func u32le(raw []byte, offset int) int {
 	return int(raw[offset]) | int(raw[offset+1])<<8 | int(raw[offset+2])<<16 | int(raw[offset+3])<<24
+}
+
+// ensureByte / ensureU16 / ensureU32 guard an encoder field against silently
+// truncating into a fixed-width slot (which would emit a valid-looking but
+// wrong chat link). field names the offending field for the error message.
+func ensureByte(field string, value int) error {
+	if value < 0 || value > 0xFF {
+		return fmt.Errorf("%w: %s = %d does not fit in a 1-byte field", ErrValueOutOfRange, field, value)
+	}
+	return nil
+}
+
+func ensureU16(field string, value int) error {
+	if value < 0 || value > 0xFFFF {
+		return fmt.Errorf("%w: %s = %d does not fit in a 2-byte field", ErrValueOutOfRange, field, value)
+	}
+	return nil
+}
+
+func ensureU32(field string, value int) error {
+	if value < 0 || value > 0xFFFFFFFF {
+		return fmt.Errorf("%w: %s = %d does not fit in a 4-byte field", ErrValueOutOfRange, field, value)
+	}
+	return nil
 }
 
 func putU16le(buf []byte, offset, value int) {

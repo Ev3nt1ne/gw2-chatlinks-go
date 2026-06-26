@@ -23,9 +23,14 @@ jobs:
           # by the build/test jobs below.
           go-version: "1.24"
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v9
         with:
-          version: latest
+          # Pin an explicit golangci-lint version rather than "latest" so the
+          # advertised lint job is reproducible and can't break under us when
+          # a new release changes defaults or the config schema. The repo's
+          # .golangci.yml uses the v2 config schema, so this must be a v2.x
+          # release.
+          version: v2.12.2
 
   test:
     strategy:
@@ -47,6 +52,20 @@ jobs:
         with:
           name: coverage-${{ matrix.os }}
           path: coverage.out
+
+  floor:
+    # The test matrix above runs on "stable" only, so nothing exercises the
+    # module's declared go.mod floor. This job builds and tests against
+    # exactly that version (read from go.mod, so the two can't drift), keeping
+    # the "go 1.x" directive an honest, CI-verified minimum.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go build ./...
+      - run: go test ./...
 
   build-matrix:
     runs-on: ubuntu-latest

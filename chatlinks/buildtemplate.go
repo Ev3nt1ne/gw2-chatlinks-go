@@ -10,26 +10,33 @@ import "fmt"
 // minimum valid length for a build template link of any vintage.
 const minBuildTemplateLen = 1 + 1 + 6 + 20 + 16
 
-// maxWeapons is the documented cap on a build template's weapon array.
+// maxWeapons is a sanity cap on a build template's weapon array, used only by
+// the encoder to reject obviously-bogus input. The wiki's Chat_link_format
+// page documents the weapon section as a 1-byte count followed by that many
+// 2-byte weapon types — so the on-wire count can express up to 255 — but no
+// real build stores anywhere near that many; every verified sample has at
+// most 2 (see VERIFICATION.md). 8 is comfortable headroom above that. The
+// decoder does not enforce this; it trusts the actual byte length, so any
+// real link still round-trips even if this estimate is conservative.
 const maxWeapons = 8
 
 // SpecializationChoice is one of a build template's 3 specialization slots.
 // Each trait tier (Adept/Master/Grandmaster) is 0 (none chosen) or 1-3
 // (which of the 3 trait options in that tier was picked).
 type SpecializationChoice struct {
-	SpecializationID int
-	Adept            int
-	Master           int
-	Grandmaster      int
+	SpecializationID int `json:"specialization_id"`
+	Adept            int `json:"adept"`
+	Master           int `json:"master"`
+	Grandmaster      int `json:"grandmaster"`
 }
 
 // RangerPets holds a Ranger build template's 4 pet slots. 0 means no pet
 // set for that slot. Field order matches the wiki's documented byte order.
 type RangerPets struct {
-	TerrestrialPet1 int
-	TerrestrialPet2 int
-	AquaticPet1     int
-	AquaticPet2     int
+	TerrestrialPet1 int `json:"terrestrial_pet_1"`
+	TerrestrialPet2 int `json:"terrestrial_pet_2"`
+	AquaticPet1     int `json:"aquatic_pet_1"`
+	AquaticPet2     int `json:"aquatic_pet_2"`
 }
 
 // RevenantLegends holds a Revenant build template's legend selection and
@@ -39,32 +46,32 @@ type RevenantLegends struct {
 	// TerrestrialActive is the active legend, terrestrial (above weapon
 	// skill 2). TerrestrialInactive is the inactive legend, terrestrial
 	// (above weapon skill 1). Aquatic* are the same pairing underwater.
-	TerrestrialActive   int
-	TerrestrialInactive int
-	AquaticActive       int
-	AquaticInactive     int
+	TerrestrialActive   int `json:"terrestrial_active"`
+	TerrestrialInactive int `json:"terrestrial_inactive"`
+	AquaticActive       int `json:"aquatic_active"`
+	AquaticInactive     int `json:"aquatic_inactive"`
 
 	// InactiveTerrestrialUtilityPaletteIDs / InactiveAquaticUtilityPaletteIDs
 	// record the display order of the *inactive* legend's 3 utility skills
 	// (palette IDs, resolved the same way as BuildTemplate.SkillPaletteIDs
 	// — see the api package). Revenant utility skills are fixed per legend,
 	// not individually chosen, but their on-screen order can be customized.
-	InactiveTerrestrialUtilityPaletteIDs [3]int
-	InactiveAquaticUtilityPaletteIDs     [3]int
+	InactiveTerrestrialUtilityPaletteIDs [3]int `json:"inactive_terrestrial_utility_palette_ids"`
+	InactiveAquaticUtilityPaletteIDs     [3]int `json:"inactive_aquatic_utility_palette_ids"`
 }
 
 // BuildTemplate is a decoded build template (header 0x0D) link.
 type BuildTemplate struct {
-	ProfessionID    int
-	Profession      string
-	Specializations [3]SpecializationChoice
+	ProfessionID    int                     `json:"profession_id"`
+	Profession      string                  `json:"profession"`
+	Specializations [3]SpecializationChoice `json:"specializations"`
 
 	// SkillPaletteIDs holds "palette IDs" (NOT public API skill IDs), in
 	// order: heal, utility x3, elite — terrestrial then aquatic for each,
 	// i.e. [heal_t, heal_a, util1_t, util1_a, util2_t, util2_a, util3_t,
 	// util3_a, elite_t, elite_a]. Resolve via the public API's
 	// /v2/professions skills_by_palette field (see the api package).
-	SkillPaletteIDs [10]int
+	SkillPaletteIDs [10]int `json:"skill_palette_ids"`
 
 	// ProfessionBytes are the raw 16 profession-specific bytes, preserved
 	// verbatim for professions with no dedicated decoded view below (and as
@@ -72,25 +79,25 @@ type BuildTemplate struct {
 	// When RangerPets or RevenantLegends is set, EncodeBuildTemplate uses
 	// that structured field instead of ProfessionBytes for the
 	// corresponding profession.
-	ProfessionBytes [16]byte
+	ProfessionBytes [16]byte `json:"profession_bytes"`
 
 	// RangerPets is only populated when Profession == "Ranger".
-	RangerPets *RangerPets
+	RangerPets *RangerPets `json:"ranger_pets,omitempty"`
 
 	// RevenantLegends is only populated when Profession == "Revenant".
-	RevenantLegends *RevenantLegends
+	RevenantLegends *RevenantLegends `json:"revenant_legends,omitempty"`
 
 	// WeaponIDs are the build's terrestrial weapons (see WeaponTypes), 0-8
 	// entries. Added by the 27 June 2023 Secrets of the Obscure update;
 	// nil for build templates created before that, which don't carry this
 	// section at all.
-	WeaponIDs []int
+	WeaponIDs []int `json:"weapon_ids,omitempty"`
 
 	// SkillOverrideIDs are public-API skill IDs for weapon-skill variants
 	// selected via Weaponmaster Training, in slot order. Added alongside
 	// Weaponmaster Training; nil if no overrides are set or the build
 	// template predates the weapon array (and therefore this section too).
-	SkillOverrideIDs []int
+	SkillOverrideIDs []int `json:"skill_override_ids,omitempty"`
 }
 
 // DecodeBuildTemplate decodes a build template (header 0x0D) chat link.
@@ -100,10 +107,10 @@ func DecodeBuildTemplate(code string) (BuildTemplate, error) {
 		return BuildTemplate{}, err
 	}
 	if raw[0] != 0x0D {
-		return BuildTemplate{}, fmt.Errorf("chatlinks: not a build template link (header 0x%02x)", raw[0])
+		return BuildTemplate{}, fmt.Errorf("%w: not a build template link (header 0x%02x)", ErrWrongHeader, raw[0])
 	}
 	if len(raw) < minBuildTemplateLen {
-		return BuildTemplate{}, fmt.Errorf("chatlinks: build template payload too short: got %d bytes, need at least %d", len(raw), minBuildTemplateLen)
+		return BuildTemplate{}, fmt.Errorf("%w: build template payload too short: got %d bytes, need at least %d", ErrTruncated, len(raw), minBuildTemplateLen)
 	}
 
 	professionID := int(raw[1])
@@ -172,7 +179,7 @@ func DecodeBuildTemplate(code string) (BuildTemplate, error) {
 		weaponCount := int(raw[arrayOffset])
 		weaponsEnd := arrayOffset + 1 + weaponCount*2
 		if len(raw) < weaponsEnd {
-			return BuildTemplate{}, fmt.Errorf("chatlinks: weapon array truncated: declared %d weapons but payload too short", weaponCount)
+			return BuildTemplate{}, fmt.Errorf("%w: weapon array declared %d weapons but payload too short", ErrTruncated, weaponCount)
 		}
 		for i := 0; i < weaponCount; i++ {
 			weaponIDs = append(weaponIDs, u16le(raw, arrayOffset+1+i*2))
@@ -182,7 +189,7 @@ func DecodeBuildTemplate(code string) (BuildTemplate, error) {
 			overrideCount := int(raw[weaponsEnd])
 			overridesEnd := weaponsEnd + 1 + overrideCount*4
 			if len(raw) < overridesEnd {
-				return BuildTemplate{}, fmt.Errorf("chatlinks: skill override array truncated: declared %d overrides but payload too short", overrideCount)
+				return BuildTemplate{}, fmt.Errorf("%w: skill override array declared %d overrides but payload too short", ErrTruncated, overrideCount)
 			}
 			for i := 0; i < overrideCount; i++ {
 				skillOverrideIDs = append(skillOverrideIDs, u32le(raw, weaponsEnd+1+i*4))
@@ -203,17 +210,100 @@ func DecodeBuildTemplate(code string) (BuildTemplate, error) {
 	}, nil
 }
 
+// validateBuildTemplate range-checks every field EncodeBuildTemplate writes
+// into a fixed-width slot, so an out-of-range value returns ErrValueOutOfRange
+// instead of being silently truncated into a valid-looking but wrong link.
+// Trait tiers are intentionally not checked: they are masked to 2 bits at
+// encode time (matching the wire format), so they cannot overflow their slot.
+func validateBuildTemplate(bt BuildTemplate) error {
+	if len(bt.WeaponIDs) > maxWeapons {
+		return fmt.Errorf("%w: %d weapons (max %d)", ErrValueOutOfRange, len(bt.WeaponIDs), maxWeapons)
+	}
+	if len(bt.SkillOverrideIDs) > 0xFF {
+		return fmt.Errorf("%w: %d skill overrides (max 255)", ErrValueOutOfRange, len(bt.SkillOverrideIDs))
+	}
+	if err := ensureByte("ProfessionID", bt.ProfessionID); err != nil {
+		return err
+	}
+	for i, spec := range bt.Specializations {
+		if err := ensureByte(fmt.Sprintf("Specializations[%d].SpecializationID", i), spec.SpecializationID); err != nil {
+			return err
+		}
+	}
+	for i, id := range bt.SkillPaletteIDs {
+		if err := ensureU16(fmt.Sprintf("SkillPaletteIDs[%d]", i), id); err != nil {
+			return err
+		}
+	}
+	for i, id := range bt.WeaponIDs {
+		if err := ensureU16(fmt.Sprintf("WeaponIDs[%d]", i), id); err != nil {
+			return err
+		}
+	}
+	for i, id := range bt.SkillOverrideIDs {
+		if err := ensureU32(fmt.Sprintf("SkillOverrideIDs[%d]", i), id); err != nil {
+			return err
+		}
+	}
+	// The structured profession fields are only written when set and only
+	// for the matching profession; mirror that condition here so a stray
+	// RangerPets on a non-Ranger build (ignored at encode time) isn't
+	// spuriously rejected.
+	switch professions[bt.ProfessionID] {
+	case "Ranger":
+		if p := bt.RangerPets; p != nil {
+			for _, c := range []struct {
+				name string
+				v    int
+			}{
+				{"RangerPets.TerrestrialPet1", p.TerrestrialPet1},
+				{"RangerPets.TerrestrialPet2", p.TerrestrialPet2},
+				{"RangerPets.AquaticPet1", p.AquaticPet1},
+				{"RangerPets.AquaticPet2", p.AquaticPet2},
+			} {
+				if err := ensureByte(c.name, c.v); err != nil {
+					return err
+				}
+			}
+		}
+	case "Revenant":
+		if rl := bt.RevenantLegends; rl != nil {
+			for _, c := range []struct {
+				name string
+				v    int
+			}{
+				{"RevenantLegends.TerrestrialActive", rl.TerrestrialActive},
+				{"RevenantLegends.TerrestrialInactive", rl.TerrestrialInactive},
+				{"RevenantLegends.AquaticActive", rl.AquaticActive},
+				{"RevenantLegends.AquaticInactive", rl.AquaticInactive},
+			} {
+				if err := ensureByte(c.name, c.v); err != nil {
+					return err
+				}
+			}
+			for i, id := range rl.InactiveTerrestrialUtilityPaletteIDs {
+				if err := ensureU16(fmt.Sprintf("RevenantLegends.InactiveTerrestrialUtilityPaletteIDs[%d]", i), id); err != nil {
+					return err
+				}
+			}
+			for i, id := range rl.InactiveAquaticUtilityPaletteIDs {
+				if err := ensureU16(fmt.Sprintf("RevenantLegends.InactiveAquaticUtilityPaletteIDs[%d]", i), id); err != nil {
+					return err
+				}
+			}
+		}
+	}
+	return nil
+}
+
 // EncodeBuildTemplate encodes a build template (header 0x0D) chat link.
 // RangerPets / RevenantLegends, when set, take precedence over
 // ProfessionBytes for the corresponding profession; ProfessionBytes is
 // otherwise copied through verbatim (so unknown professions and any region
 // this package doesn't structurally model round-trip byte-for-byte).
 func EncodeBuildTemplate(bt BuildTemplate) (string, error) {
-	if len(bt.WeaponIDs) > maxWeapons {
-		return "", fmt.Errorf("chatlinks: too many weapons: %d (max %d)", len(bt.WeaponIDs), maxWeapons)
-	}
-	if len(bt.SkillOverrideIDs) > 0xFF {
-		return "", fmt.Errorf("chatlinks: too many skill overrides: %d (max 255)", len(bt.SkillOverrideIDs))
+	if err := validateBuildTemplate(bt); err != nil {
+		return "", err
 	}
 
 	const specOffset = 2

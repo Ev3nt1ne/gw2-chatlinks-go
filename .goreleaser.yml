@@ -1,0 +1,51 @@
+# goreleaser configuration (schema version 2).
+# Produces cross-platform CLI binaries, archives, and checksums on every
+# pushed "v*" tag (see .github/workflows/release.yml). `go install` of the
+# module keeps working independently of this; goreleaser exists so non-Go
+# users can download a prebuilt binary.
+version: 2
+
+project_name: gw2-chatlinks
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: gw2-chatlinks
+    main: ./cmd/gw2-chatlinks
+    binary: gw2-chatlinks
+    env:
+      - CGO_ENABLED=0
+    goos: [linux, darwin, windows]
+    goarch: [amd64, arm64]
+    flags:
+      - -trimpath
+    ldflags:
+      # Stamp the CLI's version (see main.version) from the git tag.
+      - -s -w -X main.version={{ .Version }}
+
+archives:
+  - id: default
+    formats: [tar.gz]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+      - "^chore:"
+
+release:
+  github:
+    owner: Ev3nt1ne
+    name: gw2-chatlinks-go

@@ -1,11 +1,36 @@
-linters:
-  enable:
-    - gosec
-    - govet
-    - errcheck
-    - staticcheck
-    - unused
-    - ineffassign
+# golangci-lint v2 configuration (schema version 2).
+# The "standard" default set already includes errcheck, govet, ineffassign,
+# staticcheck, and unused; we add gosec on top for a security-focused pass.
+version: "2"
 
 run:
   timeout: 5m
+
+linters:
+  default: standard
+  enable:
+    - gosec
+  settings:
+    errcheck:
+      # The fmt.Fprint* family writes to an already-selected output stream
+      # (stdout/stderr); a failed write there isn't actionable for this CLI,
+      # and checking every print would bury the actual logic.
+      exclude-functions:
+        - fmt.Fprint
+        - fmt.Fprintln
+        - fmt.Fprintf
+    gosec:
+      excludes:
+        # G115 (int -> smaller-int overflow): this library deliberately packs
+        # ints into fixed-width little-endian byte fields, and the encoders
+        # validate every value's range up front (validateBuildTemplate /
+        # EncodeSimpleIDLink, returning ErrValueOutOfRange). gosec can't see
+        # that invariant, so G115 here is pure noise.
+        - G115
+  exclusions:
+    rules:
+      # Security scanning of test code (e.g. bounds in test-only helpers) is
+      # noise — tests aren't an attack surface.
+      - path: _test\.go
+        linters:
+          - gosec

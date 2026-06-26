@@ -12,7 +12,12 @@
 // weapon array of Rifle+Hammer was cross-checked against the Scrapper elite
 // specialization's weapon grant). The trait-tier bit layout was confirmed
 // against the wiki's own worked numeric example. Revenant legend bytes and
-// the skill-override array are implemented per the wiki spec but, as of
-// this writing, not yet exercised by any real sample (see
-// chatlinks_test.go for what's covered).
+// the skill-override (Weaponmaster Training) array are now also verified
+// against real samples — see VERIFICATION.md and chatlinks_test.go for the
+// full coverage breakdown.
+//
+// Decoders return errors wrapping the package's sentinel error values
+// (ErrInvalidPayload, ErrWrongHeader, ErrTruncated) and encoders wrap
+// ErrUnknownLinkType / ErrValueOutOfRange, so callers can classify failures
+// with errors.Is rather than matching message text.
 package chatlinks

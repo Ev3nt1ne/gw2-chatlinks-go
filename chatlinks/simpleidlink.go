@@ -2,32 +2,52 @@ package chatlinks
 
 import "fmt"
 
+// simpleIDLinkTypes is the set of link types DecodeSimpleIDLink /
+// EncodeSimpleIDLink actually support: those shaped as "header (+ optional
+// 1-byte quantity) + 3-byte id". Other known headers (coin, text, pvp_game,
+// user, build/wardrobe templates, etc.) have entirely different layouts and
+// must not be (mis)handled here.
+var simpleIDLinkTypes = map[string]bool{
+	"map":         true, // 0x04
+	"skill":       true, // 0x06
+	"trait":       true, // 0x07
+	"item":        true, // 0x02 (carries a quantity byte before the id)
+	"recipe":      true, // 0x09
+	"achievement": true, // 0x0E
+}
+
 // SimpleIDLink represents the common "single ID" link shapes: skill (0x06),
 // trait (0x07), item (0x02), recipe (0x09), etc.
 type SimpleIDLink struct {
-	LinkType string
-	ID       int
+	LinkType string `json:"link_type"`
+	ID       int    `json:"id"`
 
 	// Quantity is only meaningful when LinkType == "item"; it's the stack
 	// size encoded immediately before the item ID. Zero/unset for other
 	// link types.
-	Quantity int
+	Quantity int `json:"quantity,omitempty"`
 }
 
-// DecodeSimpleIDLink decodes a skill/trait/item/recipe-shaped link. Item
-// links carry a quantity byte before the ID; everything else here doesn't.
+// DecodeSimpleIDLink decodes a map/skill/trait/item/recipe/achievement link
+// (the "header + 3-byte id" shapes; see simpleIDLinkTypes). Item links carry
+// a quantity byte before the ID; everything else here doesn't. Any other link
+// type (coin, text, build template, ...) returns an error wrapping
+// ErrWrongHeader rather than being silently mis-decoded.
 func DecodeSimpleIDLink(code string) (SimpleIDLink, error) {
 	raw, err := DecodeRaw(code)
 	if err != nil {
 		return SimpleIDLink{}, err
 	}
 	t := HeaderType(raw)
+	if !simpleIDLinkTypes[t] {
+		return SimpleIDLink{}, fmt.Errorf("%w: %s is not an id-shaped link type", ErrWrongHeader, t)
+	}
 	offset := 1
 	if t == "item" {
 		offset = 2
 	}
 	if len(raw) < offset+3 {
-		return SimpleIDLink{}, fmt.Errorf("chatlinks: payload too short for %s link: got %d bytes, need at least %d", t, len(raw), offset+3)
+		return SimpleIDLink{}, fmt.Errorf("%w: payload too short for %s link: got %d bytes, need at least %d", ErrTruncated, t, len(raw), offset+3)
 	}
 	link := SimpleIDLink{LinkType: t, ID: u24le(raw, offset)}
 	if t == "item" {
@@ -36,14 +56,15 @@ func DecodeSimpleIDLink(code string) (SimpleIDLink, error) {
 	return link, nil
 }
 
-// EncodeSimpleIDLink encodes a skill/trait/item/recipe-shaped link.
+// EncodeSimpleIDLink encodes a map/skill/trait/item/recipe/achievement link
+// (the "header + 3-byte id" shapes; see simpleIDLinkTypes).
 func EncodeSimpleIDLink(link SimpleIDLink) (string, error) {
-	header, ok := linkTypeToHeader[link.LinkType]
-	if !ok {
-		return "", fmt.Errorf("chatlinks: unknown link type %q", link.LinkType)
+	if !simpleIDLinkTypes[link.LinkType] {
+		return "", fmt.Errorf("%w: %q is not an id-shaped link type", ErrUnknownLinkType, link.LinkType)
 	}
+	header := linkTypeToHeader[link.LinkType]
 	if link.ID < 0 || link.ID > 0xFFFFFF {
-		return "", fmt.Errorf("chatlinks: id %d out of range for a 3-byte id", link.ID)
+		return "", fmt.Errorf("%w: id %d out of range for a 3-byte id", ErrValueOutOfRange, link.ID)
 	}
 
 	if link.LinkType == "item" {
@@ -52,7 +73,7 @@ func EncodeSimpleIDLink(link SimpleIDLink) (string, error) {
 			quantity = 1
 		}
 		if quantity > 0xFF {
-			return "", fmt.Errorf("chatlinks: quantity %d out of range for a 1-byte field", quantity)
+			return "", fmt.Errorf("%w: quantity %d out of range for a 1-byte field", ErrValueOutOfRange, quantity)
 		}
 		// header + quantity + 3-byte id + 1 trailing zero byte. The
 		// trailing byte is real, not assumed: every item chat_link the

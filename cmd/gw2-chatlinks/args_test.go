@@ -7,6 +7,8 @@ import (
 	"flag"
 	"strings"
 	"testing"
+
+	"github.com/Ev3nt1ne/gw2-chatlinks-go/api"
 )
 
 func TestParseArgs(t *testing.T) {
@@ -114,7 +116,7 @@ func TestResolveCode(t *testing.T) {
 
 func TestRun_JSONOutput_BuildTemplate(t *testing.T) {
 	var buf bytes.Buffer
-	if err := run(&buf, thiefSample, options{asJSON: true}); err != nil {
+	if err := run(&buf, thiefSample, options{asJSON: true}, &api.Client{}); err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	var out struct {
@@ -141,7 +143,7 @@ func TestRun_JSONOutput_BuildTemplate(t *testing.T) {
 
 func TestRun_JSONOutput_SimpleLink(t *testing.T) {
 	var buf bytes.Buffer
-	if err := run(&buf, "[&AgEAAAA=]", options{asJSON: true}); err != nil {
+	if err := run(&buf, "[&AgEAAAA=]", options{asJSON: true}, &api.Client{}); err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	var out struct {

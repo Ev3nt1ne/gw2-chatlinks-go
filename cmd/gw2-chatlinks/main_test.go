@@ -5,6 +5,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/Ev3nt1ne/gw2-chatlinks-go/api"
 	"github.com/Ev3nt1ne/gw2-chatlinks-go/chatlinks"
 )
 
@@ -13,7 +14,7 @@ const rangerPetSample = "[&DQQAAAAAAAB5AAAAAAAAAAAAAAAAAAAAAAAAADA7FD8AAAAAAAAAA
 
 func TestRun_BuildTemplate_NoResolve(t *testing.T) {
 	var buf bytes.Buffer
-	if err := run(&buf, thiefSample, options{}); err != nil {
+	if err := run(&buf, thiefSample, options{}, &api.Client{}); err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	out := buf.String()
@@ -30,7 +31,7 @@ func TestRun_BuildTemplate_NoResolve(t *testing.T) {
 
 func TestRun_ItemLink_NoResolve(t *testing.T) {
 	var buf bytes.Buffer
-	if err := run(&buf, "[&AgEAAAA=]", options{}); err != nil {
+	if err := run(&buf, "[&AgEAAAA=]", options{}, &api.Client{}); err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	out := buf.String()
@@ -62,7 +63,7 @@ func TestRun_AchievementAndMapLinks_NoResolve(t *testing.T) {
 		{mapCode, "map"},
 	} {
 		var buf bytes.Buffer
-		if err := run(&buf, tt.code, options{}); err != nil {
+		if err := run(&buf, tt.code, options{}, &api.Client{}); err != nil {
 			t.Fatalf("unexpected error: %v", err)
 		}
 		out := buf.String()
@@ -78,7 +79,7 @@ func TestRun_AchievementAndMapLinks_NoResolve(t *testing.T) {
 func TestRun_UnimplementedType(t *testing.T) {
 	var buf bytes.Buffer
 	// header 0x01 = coin, no decoder implemented.
-	if err := run(&buf, "[&AQAAAAA=]", options{}); err != nil {
+	if err := run(&buf, "[&AQAAAAA=]", options{}, &api.Client{}); err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	if !strings.Contains(buf.String(), "decoder for this type not implemented yet") {
@@ -88,7 +89,7 @@ func TestRun_UnimplementedType(t *testing.T) {
 
 func TestRun_InvalidCode(t *testing.T) {
 	var buf bytes.Buffer
-	if err := run(&buf, "[&not-valid!!]", options{}); err == nil {
+	if err := run(&buf, "[&not-valid!!]", options{}, &api.Client{}); err == nil {
 		t.Error("expected error for invalid chat link, got nil")
 	}
 }
@@ -98,7 +99,7 @@ func TestRun_ResolveUnsupportedForRecipe(t *testing.T) {
 	// endpoint wired up, so this should surface an error rather than hang
 	// or silently no-op.
 	var buf bytes.Buffer
-	err := run(&buf, "[&CQEAAAA=]", options{resolve: true})
+	err := run(&buf, "[&CQEAAAA=]", options{resolve: true}, &api.Client{})
 	if err == nil {
 		t.Error("expected error for --resolve on a recipe link, got nil")
 	}
@@ -106,7 +107,7 @@ func TestRun_ResolveUnsupportedForRecipe(t *testing.T) {
 
 func TestRun_RangerPetsAndWeapons_NoResolve(t *testing.T) {
 	var buf bytes.Buffer
-	if err := run(&buf, rangerPetSample, options{}); err != nil {
+	if err := run(&buf, rangerPetSample, options{}, &api.Client{}); err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	out := buf.String()
@@ -131,7 +132,7 @@ func TestRun_RevenantLegends_NoResolve(t *testing.T) {
 	}
 
 	var buf bytes.Buffer
-	if err := run(&buf, code, options{}); err != nil {
+	if err := run(&buf, code, options{}, &api.Client{}); err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	out := buf.String()
@@ -153,7 +154,7 @@ func TestRun_RevenantLegends_UnknownCode(t *testing.T) {
 	}
 
 	var buf bytes.Buffer
-	if err := run(&buf, code, options{}); err != nil {
+	if err := run(&buf, code, options{}, &api.Client{}); err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	if !strings.Contains(buf.String(), "active_terrestrial=unknown(99)") {
@@ -171,7 +172,7 @@ func TestRun_SkillOverride_NoResolve(t *testing.T) {
 	}
 
 	var buf bytes.Buffer
-	if err := run(&buf, code, options{}); err != nil {
+	if err := run(&buf, code, options{}, &api.Client{}); err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
 	if !strings.Contains(buf.String(), "skill_override: skill_id=12345") {

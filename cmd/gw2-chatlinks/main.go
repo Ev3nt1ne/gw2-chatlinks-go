@@ -66,7 +66,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := run(os.Stdout, code, opts); err != nil {
+	if err := run(os.Stdout, code, opts, &api.Client{}); err != nil {
 		fmt.Fprintln(os.Stderr, "error:", err)
 		os.Exit(1)
 	}
@@ -136,7 +136,7 @@ func resolveCode(code string, stdin io.Reader) (string, error) {
 	return code, nil
 }
 
-func run(w io.Writer, code string, opts options) error {
+func run(w io.Writer, code string, opts options, client *api.Client) error {
 	raw, err := chatlinks.DecodeRaw(code)
 	if err != nil {
 		return err
@@ -145,9 +145,9 @@ func run(w io.Writer, code string, opts options) error {
 
 	switch t {
 	case "build_template":
-		return printBuildTemplate(w, code, opts)
+		return printBuildTemplate(w, code, opts, client)
 	case "skill", "trait", "item", "recipe", "achievement", "map":
-		return printSimpleIDLink(w, code, t, opts)
+		return printSimpleIDLink(w, code, t, opts, client)
 	default:
 		if opts.asJSON {
 			return writeJSON(w, map[string]any{
@@ -200,7 +200,7 @@ type buildTemplateResult struct {
 	SkillOverrides  []overrideResult                  `json:"skill_overrides,omitempty"`
 }
 
-func printBuildTemplate(w io.Writer, code string, opts options) error {
+func printBuildTemplate(w io.Writer, code string, opts options, client *api.Client) error {
 	bt, err := chatlinks.DecodeBuildTemplate(code)
 	if err != nil {
 		return err
@@ -214,8 +214,25 @@ func printBuildTemplate(w io.Writer, code string, opts options) error {
 		RangerPets:      bt.RangerPets,
 	}
 
-	var client api.Client
 	ctx := context.Background()
+
+	// Resolve every skill slot + override in at most 2 requests total
+	// (1 profession-document fetch + 1 batched skill-name lookup) instead
+	// of up to ~20 sequential single-ID requests, per ArenaNet's documented
+	// ID-batching recommendation (see api.Client's doc comment).
+	var paletteToSkill map[int]int
+	var skillNames map[int]string
+	if opts.resolve {
+		paletteToSkill, err = client.PaletteIDsToSkillIDs(ctx, bt.Profession, bt.SkillPaletteIDs[:])
+		if err != nil {
+			return err
+		}
+		needed := dedupeInts(append(mapIntValues(paletteToSkill), bt.SkillOverrideIDs...))
+		skillNames, err = client.ResolveSkillNames(ctx, needed)
+		if err != nil {
+			return err
+		}
+	}
 
 	for i, paletteID := range bt.SkillPaletteIDs {
 		if paletteID == 0 {
@@ -223,16 +240,16 @@ func printBuildTemplate(w io.Writer, code string, opts options) error {
 		}
 		s := skillResult{Slot: skillSlotNames[i], PaletteID: paletteID}
 		if opts.resolve {
-			skillID, ok, err := client.PaletteIDToSkillID(ctx, bt.Profession, paletteID)
-			if err != nil {
-				return err
-			}
-			s.SkillID = skillID
+			// "?" is the placeholder for both "palette not found in the
+			// profession document" and "skill id not found by name
+			// resolution" -- the same fallback the single-ID version used
+			// for the former; unified here since the batch APIs report
+			// both cases identically (the id is simply absent from the map).
 			s.Name = "?"
-			if ok {
-				s.Name, err = client.ResolveSkillName(ctx, skillID)
-				if err != nil {
-					return err
+			if skillID, ok := paletteToSkill[paletteID]; ok {
+				s.SkillID = skillID
+				if name, ok := skillNames[skillID]; ok {
+					s.Name = name
 				}
 			}
 		}
@@ -259,10 +276,7 @@ func printBuildTemplate(w io.Writer, code string, opts options) error {
 	for _, skillID := range bt.SkillOverrideIDs {
 		o := overrideResult{SkillID: skillID}
 		if opts.resolve {
-			o.Name, err = client.ResolveSkillName(ctx, skillID)
-			if err != nil {
-				return err
-			}
+			o.Name = skillNames[skillID] // empty (omitted in output) if not found
 		}
 		res.SkillOverrides = append(res.SkillOverrides, o)
 	}
@@ -323,7 +337,7 @@ type simpleLinkResult struct {
 	Name     string `json:"name,omitempty"`
 }
 
-func printSimpleIDLink(w io.Writer, code, linkType string, opts options) error {
+func printSimpleIDLink(w io.Writer, code, linkType string, opts options, client *api.Client) error {
 	link, err := chatlinks.DecodeSimpleIDLink(code)
 	if err != nil {
 		return err
@@ -332,7 +346,6 @@ func printSimpleIDLink(w io.Writer, code, linkType string, opts options) error {
 	res := simpleLinkResult{Type: linkType, ID: link.ID, Quantity: link.Quantity}
 
 	if opts.resolve {
-		var client api.Client
 		ctx := context.Background()
 		switch linkType {
 		case "skill":
@@ -364,4 +377,24 @@ func writeJSON(w io.Writer, v any) error {
 	enc := json.NewEncoder(w)
 	enc.SetIndent("", "  ")
 	return enc.Encode(v)
+}
+
+func mapIntValues(m map[int]int) []int {
+	vals := make([]int, 0, len(m))
+	for _, v := range m {
+		vals = append(vals, v)
+	}
+	return vals
+}
+
+func dedupeInts(ids []int) []int {
+	seen := make(map[int]bool, len(ids))
+	out := make([]int, 0, len(ids))
+	for _, id := range ids {
+		if !seen[id] {
+			seen[id] = true
+			out = append(out, id)
+		}
+	}
+	return out
 }

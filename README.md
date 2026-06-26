@@ -84,7 +84,11 @@ needed) to translate IDs and build-template "palette IDs" into real names.
 Note: `/v2/professions` only returns the `skills_by_palette` field if you
 pass an explicit schema version (`?v=...`) — the unversioned default omits
 it. `api.Client` handles this; if you call the GW2 API directly elsewhere,
-don't forget it.
+don't forget it. `api.Client` always sends a descriptive default
+User-Agent; set `Client.UserAgent` if you're embedding this client in your
+own application and want outbound requests attributed to your own identity
+instead (see the field's doc comment for why an "if-empty" check in your
+own `http.RoundTripper` won't work for this).
 
 ## What's covered
 
@@ -100,16 +104,36 @@ See [VERIFICATION.md](VERIFICATION.md) for exactly what's been checked
 against real game data versus implemented from the spec alone, and how to
 keep it current as the game patches.
 
+## Rate limits & batching
+
+The GW2 API rate-limits per IP (shared across all software using that IP,
+not just this library) and the limit itself is not fixed — see
+[API:Best_practices](https://wiki.guildwars2.com/wiki/API:Best_practices).
+`api.Client` follows ArenaNet's documented ID-batching recommendation:
+
+```go
+var client api.Client
+names, err := client.ResolveSkillNames(ctx, []int{12345, 23456, 34567})
+// one (or, above 200 ids, a few chunked) request instead of one per id
+
+paletteToSkill, err := client.PaletteIDsToSkillIDs(ctx, "Thief", bt.SkillPaletteIDs[:])
+// fetches /v2/professions/Thief once, regardless of how many palette ids
+```
+
+A 429 response surfaces as a `*api.RateLimitError` (wrapping
+`api.ErrRateLimited`, classifiable via `errors.Is`), carrying `RetryAfter`
+and the live `Limit` value when the server sends them. This package never
+retries automatically on a 429 — that's a deliberate choice so a hidden
+retry loop can't surprise a caller with unexpected latency; back off using
+`RetryAfter` yourself if you need that. The CLI's `--resolve` already uses
+the batch methods (a build template resolves in ~2 requests total, not one
+per skill slot).
+
 ## Deferred
 
-Intentionally out of scope for now — none affect decode/encode correctness;
-all live in the optional `--resolve` / `api` enrichment path:
+Intentionally out of scope for now — doesn't affect decode/encode
+correctness, lives in the optional `api` enrichment path:
 
-- **No caching in `--resolve`.** Each palette ID is resolved by re-fetching
-  the whole `/v2/professions/{p}` document, so a build with many skills
-  re-fetches the same document repeatedly. Fine for one-off CLI use;
-  deferred until `api.Client` sees heavier programmatic use, where a
-  per-profession cache or a batch resolver would be the right shape.
 - **`api` pins the GW2 schema version to `latest`.** Convenient, but a
   future ArenaNet schema change could shift field shapes underneath callers.
   A date-stamped pinned schema would be more defensive; the tradeoff is

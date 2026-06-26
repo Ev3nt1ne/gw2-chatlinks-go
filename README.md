@@ -120,6 +120,19 @@ paletteToSkill, err := client.PaletteIDsToSkillIDs(ctx, "Thief", bt.SkillPalette
 // fetches /v2/professions/Thief once, regardless of how many palette ids
 ```
 
+To resolve a whole decoded build template at once, `ResolveBuildTemplate`
+does the orchestration for you — all of a build's skills (palette-derived and
+overrides) plus specializations in **at most three requests**, returning maps
+of resolved names (unrecognized IDs are simply absent):
+
+```go
+resolved, err := client.ResolveBuildTemplate(ctx, bt) // bt from chatlinks.DecodeBuildTemplate
+// resolved.PaletteToSkillID, resolved.SkillNames, resolved.SpecializationNames
+```
+
+The three lookups are independent and best-effort: if one fails the others
+still populate, and the error is returned alongside the partial result.
+
 A 429 response surfaces as a `*api.RateLimitError` (wrapping
 `api.ErrRateLimited`, classifiable via `errors.Is`), carrying `RetryAfter`
 and the live `Limit` value when the server sends them. This package never

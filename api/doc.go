@@ -23,4 +23,9 @@
 // single-ID methods — they follow ArenaNet's documented ID-batching
 // recommendation (up to 200 ids per request, chunked automatically here)
 // instead of issuing one request per ID.
+//
+// To resolve a whole decoded build template, prefer ResolveBuildTemplate
+// over orchestrating the batch methods by hand — it resolves all of a
+// build's skills (palette-derived and overrides) and specializations in at
+// most three requests.
 package api

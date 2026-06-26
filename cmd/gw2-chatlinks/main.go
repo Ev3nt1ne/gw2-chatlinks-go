@@ -218,20 +218,17 @@ func printBuildTemplate(w io.Writer, code string, opts options, client *api.Clie
 
 	// Resolve every skill slot + override in at most 2 requests total
 	// (1 profession-document fetch + 1 batched skill-name lookup) instead
-	// of up to ~20 sequential single-ID requests, per ArenaNet's documented
-	// ID-batching recommendation (see api.Client's doc comment).
+	// of up to ~20 sequential single-ID requests, via the api package's
+	// build-template orchestrator (see api.Client.ResolveBuildTemplate).
 	var paletteToSkill map[int]int
 	var skillNames map[int]string
 	if opts.resolve {
-		paletteToSkill, err = client.PaletteIDsToSkillIDs(ctx, bt.Profession, bt.SkillPaletteIDs[:])
-		if err != nil {
-			return err
+		resolved, rerr := client.ResolveBuildTemplate(ctx, bt)
+		if rerr != nil {
+			return rerr
 		}
-		needed := dedupeInts(append(mapIntValues(paletteToSkill), bt.SkillOverrideIDs...))
-		skillNames, err = client.ResolveSkillNames(ctx, needed)
-		if err != nil {
-			return err
-		}
+		paletteToSkill = resolved.PaletteToSkillID
+		skillNames = resolved.SkillNames
 	}
 
 	for i, paletteID := range bt.SkillPaletteIDs {
@@ -377,24 +374,4 @@ func writeJSON(w io.Writer, v any) error {
 	enc := json.NewEncoder(w)
 	enc.SetIndent("", "  ")
 	return enc.Encode(v)
-}
-
-func mapIntValues(m map[int]int) []int {
-	vals := make([]int, 0, len(m))
-	for _, v := range m {
-		vals = append(vals, v)
-	}
-	return vals
-}
-
-func dedupeInts(ids []int) []int {
-	seen := make(map[int]bool, len(ids))
-	out := make([]int, 0, len(ids))
-	for _, id := range ids {
-		if !seen[id] {
-			seen[id] = true
-			out = append(out, id)
-		}
-	}
-	return out
 }

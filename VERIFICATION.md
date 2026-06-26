@@ -9,8 +9,10 @@ not yet sample-verified, and where the test fixtures come from.
 Originated as a Go port of an earlier Python prototype
 (`gw2-chatlinks-py`, not published — kept locally as a reference
 implementation), since extended with encoding, weapon/skill-override
-arrays, and Revenant legends. Verified against 4 real build-template
-codes (see `chatlinks/chatlinks_test.go`):
+arrays, and Revenant legends. Verified against 4 real level-2
+build-template codes plus 6 further real samples covering trait choices,
+a distinct land/water skill loadout, Revenant legends, and a second
+Ranger pet build (see `chatlinks/chatlinks_test.go`):
 
 - **Header byte and profession byte mapping** (`0x0D` = build template,
   1-9 → Guardian..Revenant) — verified empirically against real codes.
@@ -21,7 +23,9 @@ codes (see `chatlinks/chatlinks_test.go`):
 - **Ranger pet decoding** preserves slot position (`RangerPets`, a
   4-field struct) rather than compacting non-zero slots into a flat list,
   which would shift later pets into earlier slots on round-trip if any
-  slot were actually unset.
+  slot were actually unset. Checked against 2 independent real samples
+  (`rangerPetSample`, `untamedPetsSample`), both with all 4 slots
+  distinct and nonzero.
 - **Weapon array decoding** — cross-checked against independently
   verified game facts, not just the spec: the Engineer sample decodes to
   Rifle+Hammer, consistent with the wiki's own Scrapper article (Scrapper
@@ -29,30 +33,84 @@ codes (see `chatlinks/chatlinks_test.go`):
   (Longbow+Greatsword, both core weapons), and Elementalist (Staff) check
   out the same way.
 - **Specialization/trait-tier bit-packing** (`Adept`/`Master`/
-  `Grandmaster`) — all 4 real samples have zero specializations chosen
-  (expected: these are level-2 templates, and GW2 doesn't unlock trait
-  lines until ~level 11), so the bit layout is instead confirmed against
-  the wiki's own worked numeric example (`0b00111001` → Adept=1,
-  Master=2, Grandmaster=3), resolving the ambiguity in its prose ("2-bit
-  values from 0 to 3, in reverse order").
+  `Grandmaster`) — the 4 level-2 samples have zero specializations chosen
+  (expected: GW2 doesn't unlock trait lines until ~level 11), so the bit
+  layout was originally confirmed only against the wiki's own worked
+  numeric example (`0b00111001` → Adept=1, Master=2, Grandmaster=3). Now
+  also verified against 4 real samples with actual trait picks
+  (`weaverTraitSample`, `evokerSample1`, `evokerSample2`,
+  `catalystSample`) — every specialization slot's Adept/Master/Grandmaster
+  values were independently cross-checked against the plain-text
+  description given alongside each exported code and matched exactly.
+  `evokerSample1`/`evokerSample2` are Evoker, a *different* Elementalist
+  elite spec from Catalyst (Visions of Eternity, not End of Dragons —
+  confirmed via the wiki rather than assumed, since it postdates this
+  package's original reference knowledge); its familiar pick
+  (Fox/Otter/Hare/Toad) was checked and is **not** stored in the build
+  template at all — both samples' `ProfessionBytes` decode all-zero and
+  byte-identical despite picking different familiars, the same situation
+  as Catalyst's Jade Sphere element choice.
+- **Land/water skill loadout** — `catalystSample` has a genuinely
+  different skill on every single terrestrial/aquatic pair (heal, all 3
+  utilities, elite), confirmed by decoding it: e.g. heal_terrestrial =
+  Signet of Restoration vs. heal_aquatic = Ether Renewal, elite_terrestrial
+  = Glyph of Elementals vs. elite_aquatic = Tornado. Closes the
+  underwater-loadout gap below without needing a separate sample.
+- **Revenant legends** — `revenantLegendsRealSample` is a real build with
+  the active and inactive legend genuinely different from each other on
+  *both* land and water (terrestrial active=Renegade/inactive=Assassin,
+  aquatic active=Dwarf/inactive=Assassin), matching the human's
+  description for the legend bytes and both other specialization tiers
+  exactly. One discrepancy: the human's note says "3 3 3" for the
+  elite-spec tier, but the link decodes to 2-2-2 there, consistently
+  across repeated decodes — most likely a one-line transcription slip in
+  the note (everything else in the same sample matches), not a decoder
+  bug; the test asserts the real decoded value.
+- **Skill-override array (Weaponmaster Training)** —
+  `weaponmasterVariantSample` is a real Ranger build wielding Hammer (not
+  a native Ranger weapon) with 3 skill-override entries. Verified against
+  the live API, not just the sample's own internal consistency: all 3
+  resolve to real skills named "Unleashed Wild Swing/Savage Shock
+  Wave/Thump" and are tagged `specialization: 72` (Untamed) by the API
+  itself, while this build's own elite spec (decoded from the same
+  sample) is 78 (Galeshot) — a different spec. That mismatch is the
+  override mechanic working as intended: a Hammer skill variant borrowed
+  from a spec the build isn't using.
+- **Weapon array only stores terrestrial weapons** — confirmed against
+  the wiki's [Chat link format](https://wiki.guildwars2.com/wiki/Chat_link_format)
+  page, which states this explicitly for the build-template weapon
+  section: "The first byte indicates the number of terrestrial weapons
+  stored in the code... Aquatic weapons are not stored." This is a
+  limitation of the game's own chat-link format, not a gap in this
+  package — `WeaponIDs` correctly reflects everything the format
+  contains. Confirmed empirically too: 4 real samples whose human-given
+  descriptions mentioned an aquatic weapon (trident, spear, harpoon gun)
+  all decode to exactly the terrestrial weapons and nothing else, with
+  the array's own length byte (checked at the raw-byte level) agreeing —
+  not a decoder truncation. The same wiki passage also confirms a build
+  with two of the same weapon type in one set (e.g. dual daggers) stores
+  that type only once, not twice — also matches every real sample.
 - **Encoding** (`EncodeBuildTemplate`, `EncodeSimpleIDLink`) — verified by
-  round-tripping all 4 real samples (decode → encode → decode,
+  round-tripping all 11 real samples (decode → encode → decode,
   byte-for-byte identical) plus synthetic round-trips for Revenant
   legends, weapons, and skill overrides.
 
 **Gaps, not yet covered by any real sample:**
 
-- A real code with a trait actually chosen (all 4 samples are
-  level-2/no-traits).
-- Revenant legend bytes and the skill-override array (Weaponmaster
-  Training) — implemented per the wiki spec, including the public API's
-  `/v2/legends` `code` field for legend values, but only exercised by
-  structural/round-trip tests (`TestDecodeBuildTemplate_RevenantLegends`,
-  `TestDecodeBuildTemplate_SkillOverrides`), not a real exported code.
-- 4+ weapons across two weapon sets, a 4-pet Ranger build, and an
-  underwater-loadout variant.
+- 4+ weapons across two weapon sets. The array is verified correct above
+  and is capped at 8 entries, but since it only stores terrestrial
+  weapons (see above), reaching more than 2 entries needs distinct
+  weapon types across *both land weapon sets* — an aquatic weapon won't
+  help, no matter how it's equipped.
 
-A real-sample wishlist for closing these gaps, with exact export
+Equipment templates (armor/runes/trinkets) were considered for inclusion
+but are out of scope: confirmed against the wiki's [Chat link
+format](https://wiki.guildwars2.com/wiki/Chat_link_format) page that
+`0x0D` (build template) is the *only* template-related chat-link header
+that exists — there's no way to export equipment-template data as a
+chat link at all, regardless of tooling.
+
+A real-sample wishlist for closing the remaining gaps, with exact export
 instructions per item, lives outside this repo (HeroAscent workspace:
 `docs/GW2_CHATLINKS_GO_BUILD_WISHLIST.md`).
 

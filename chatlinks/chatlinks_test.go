@@ -28,6 +28,22 @@ const (
 	rangerPetSample    = "[&DQQAAAAAAAB5AAAAAAAAAAAAAAAAAAAAAAAAADA7FD8AAAAAAAAAAAAAAAACIwAyAAA=]"
 )
 
+// Additional real samples covering data the 4 level-2 samples above lack:
+// actual trait picks, a 2-legend Revenant build, a fully distinct
+// land/water skill loadout, a second Ranger pet build, and a real
+// Weaponmaster Training skill-override sample. evokerSample1 and
+// evokerSample2 are Evoker, an Elementalist elite spec distinct from
+// Catalyst. See VERIFICATION.md for cross-check details.
+const (
+	weaverTraitSample         = "[&DQYpOxE/OBkAFnQA9RUAAPYAAABPAQAAEhcAAAAAAAAAAAAAAAAAAAAAAAABCQEA]"
+	evokerSample1             = "[&DQYaLik7UDt0AHQAywDLAI8AjwAcARwBah1qHQAAAAAAAAAAAAAAAAAAAAACLwBZAAA=]"
+	evokerSample2             = "[&DQYfCxEpUDpiHQAATQEAAB0BAACLHQAAah0AAAAAAAAAAAAAAAAAAAAAAAACLwBZAAA=]"
+	catalystSample            = "[&DQYfPSkfQyZ0AHUAvgFNAVABkQD4Go8AJgCWAAAAAAAAAAAAAAAAAAAAAAACVgAvAAA=]"
+	revenantLegendsRealSample = "[&DQkPPQMZPyrcEdwRBhIGEisSKxLUEdQRyhHKEQUCAwLUESsSBhIGEisS1BECawBaAAA=]"
+	untamedPetsSample         = "[&DQQIOyAuSBuhABQblgGWAbYAmgC4ALgAlwHtAB9CFQwAAAAAAAAAAAAAAAACIwAFAAA=]"
+	weaponmasterVariantSample = "[&DQQIKR46TilUHXkAmgAAAIMdmgB1HQAAWx0AAEI3ARMAAAAAAAAAAAAAAAACMwAJAQNn9wAAm/YAAOj2AAA=]"
+)
+
 func TestDecodeBuildTemplate_Thief(t *testing.T) {
 	bt, err := DecodeBuildTemplate(thiefSample)
 	if err != nil {
@@ -105,6 +121,161 @@ func TestDecodeBuildTemplate_RangerPets(t *testing.T) {
 	wantWeapons := []int{35, 50}
 	if !equalIntSlices(bt.WeaponIDs, wantWeapons) {
 		t.Errorf("WeaponIDs = %v, want %v", bt.WeaponIDs, wantWeapons)
+	}
+}
+
+// TestDecodeBuildTemplate_RealTraitSelections checks Adept/Master/
+// Grandmaster picks against 4 real samples with actual trait choices.
+func TestDecodeBuildTemplate_RealTraitSelections(t *testing.T) {
+	tests := []struct {
+		name       string
+		code       string
+		profession string
+		want       [3]SpecializationChoice
+	}{
+		{
+			name:       "weaver",
+			code:       weaverTraitSample,
+			profession: "Elementalist",
+			want: [3]SpecializationChoice{
+				{SpecializationID: 41, Adept: 3, Master: 2, Grandmaster: 3},
+				{SpecializationID: 17, Adept: 3, Master: 3, Grandmaster: 3},
+				{SpecializationID: 56, Adept: 1, Master: 2, Grandmaster: 1},
+			},
+		},
+		{
+			name:       "evoker1",
+			code:       evokerSample1,
+			profession: "Elementalist",
+			want: [3]SpecializationChoice{
+				{SpecializationID: 26, Adept: 2, Master: 3, Grandmaster: 2},
+				{SpecializationID: 41, Adept: 3, Master: 2, Grandmaster: 3},
+				{SpecializationID: 80, Adept: 3, Master: 2, Grandmaster: 3},
+			},
+		},
+		{
+			name:       "evoker2",
+			code:       evokerSample2,
+			profession: "Elementalist",
+			want: [3]SpecializationChoice{
+				{SpecializationID: 31, Adept: 3, Master: 2, Grandmaster: 0},
+				{SpecializationID: 17, Adept: 1, Master: 2, Grandmaster: 2},
+				{SpecializationID: 80, Adept: 2, Master: 2, Grandmaster: 3},
+			},
+		},
+		{
+			name:       "catalyst",
+			code:       catalystSample,
+			profession: "Elementalist",
+			want: [3]SpecializationChoice{
+				{SpecializationID: 31, Adept: 1, Master: 3, Grandmaster: 3},
+				{SpecializationID: 41, Adept: 3, Master: 3, Grandmaster: 1},
+				{SpecializationID: 67, Adept: 2, Master: 1, Grandmaster: 2},
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			bt, err := DecodeBuildTemplate(tt.code)
+			if err != nil {
+				t.Fatalf("unexpected error: %v", err)
+			}
+			if bt.Profession != tt.profession {
+				t.Errorf("Profession = %q, want %q", bt.Profession, tt.profession)
+			}
+			if bt.Specializations != tt.want {
+				t.Errorf("Specializations = %+v, want %+v", bt.Specializations, tt.want)
+			}
+		})
+	}
+}
+
+// TestDecodeBuildTemplate_RealSampleNoAquaticSkills checks that no
+// aquatic skill slot is populated when a real build genuinely sets none.
+func TestDecodeBuildTemplate_RealSampleNoAquaticSkills(t *testing.T) {
+	bt, err := DecodeBuildTemplate(evokerSample2)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	for i, paletteID := range bt.SkillPaletteIDs {
+		if i%2 == 1 && paletteID != 0 {
+			t.Errorf("SkillPaletteIDs[%d] (an aquatic slot) = %d, want 0", i, paletteID)
+		}
+	}
+}
+
+// TestDecodeBuildTemplate_RealRevenantLegends checks a real Revenant
+// build with the active and inactive legend genuinely different from
+// each other on both land and water.
+func TestDecodeBuildTemplate_RealRevenantLegends(t *testing.T) {
+	bt, err := DecodeBuildTemplate(revenantLegendsRealSample)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if bt.Profession != "Revenant" {
+		t.Errorf("Profession = %q, want Revenant", bt.Profession)
+	}
+	want := RevenantLegends{
+		TerrestrialActive:   5, // Legendary Renegade Stance (Kalla)
+		TerrestrialInactive: 2, // Legendary Assassin Stance (Shiro)
+		AquaticActive:       3, // Legendary Dwarf Stance
+		AquaticInactive:     2, // Legendary Assassin Stance (Shiro)
+	}
+	got := *bt.RevenantLegends
+	if got.TerrestrialActive != want.TerrestrialActive ||
+		got.TerrestrialInactive != want.TerrestrialInactive ||
+		got.AquaticActive != want.AquaticActive ||
+		got.AquaticInactive != want.AquaticInactive {
+		t.Fatalf("RevenantLegends = %+v, want %+v", got, want)
+	}
+	wantSpecs := [3]SpecializationChoice{
+		{SpecializationID: 15, Adept: 1, Master: 3, Grandmaster: 3},
+		{SpecializationID: 3, Adept: 1, Master: 2, Grandmaster: 1},
+		{SpecializationID: 63, Adept: 2, Master: 2, Grandmaster: 2},
+	}
+	if bt.Specializations != wantSpecs {
+		t.Errorf("Specializations = %+v, want %+v", bt.Specializations, wantSpecs)
+	}
+}
+
+// TestDecodeBuildTemplate_RealUntamedPets is a second real Ranger
+// sample, checking all 4 pet slots decode to distinct values.
+func TestDecodeBuildTemplate_RealUntamedPets(t *testing.T) {
+	bt, err := DecodeBuildTemplate(untamedPetsSample)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if bt.Profession != "Ranger" {
+		t.Errorf("Profession = %q, want Ranger", bt.Profession)
+	}
+	want := RangerPets{TerrestrialPet1: 31, TerrestrialPet2: 66, AquaticPet1: 21, AquaticPet2: 12}
+	if bt.RangerPets == nil || *bt.RangerPets != want {
+		t.Fatalf("RangerPets = %+v, want %+v", bt.RangerPets, want)
+	}
+}
+
+// TestDecodeBuildTemplate_RealWeaponmasterVariant is the real-sample
+// counterpart to TestDecodeBuildTemplate_SkillOverrides's synthetic one:
+// a Ranger build wielding Hammer (not a native Ranger weapon) with 3
+// weapon-skill variants selected via Weaponmaster Training.
+func TestDecodeBuildTemplate_RealWeaponmasterVariant(t *testing.T) {
+	bt, err := DecodeBuildTemplate(weaponmasterVariantSample)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if bt.Profession != "Ranger" {
+		t.Errorf("Profession = %q, want Ranger", bt.Profession)
+	}
+	wantWeapons := []int{51, 265} // Hammer, Spear
+	if !equalIntSlices(bt.WeaponIDs, wantWeapons) {
+		t.Errorf("WeaponIDs = %v, want %v", bt.WeaponIDs, wantWeapons)
+	}
+	// Unleashed Wild Swing/Savage Shock Wave/Thump — Hammer skill variants
+	// tagged to specialization 72 (Untamed) by the public API, despite
+	// this build's own elite spec being a different one (Galeshot).
+	wantOverrides := []int{63335, 63131, 63208}
+	if !equalIntSlices(bt.SkillOverrideIDs, wantOverrides) {
+		t.Errorf("SkillOverrideIDs = %v, want %v", bt.SkillOverrideIDs, wantOverrides)
 	}
 }
 
@@ -259,7 +430,12 @@ func TestDecodeBuildTemplate_SkillOverrides(t *testing.T) {
 // DecodeBuildTemplate and EncodeBuildTemplate: any mismatch in offsets,
 // bit-packing, or array handling between the two would surface here.
 func TestEncodeBuildTemplate_RoundTripsRealSamples(t *testing.T) {
-	for _, sample := range []string{thiefSample, elementalistSample, engineerSample, rangerPetSample} {
+	samples := []string{
+		thiefSample, elementalistSample, engineerSample, rangerPetSample,
+		weaverTraitSample, evokerSample1, evokerSample2, catalystSample,
+		revenantLegendsRealSample, untamedPetsSample, weaponmasterVariantSample,
+	}
+	for _, sample := range samples {
 		wantRaw, err := DecodeRaw(sample)
 		if err != nil {
 			t.Fatalf("DecodeRaw(%q): %v", sample, err)
